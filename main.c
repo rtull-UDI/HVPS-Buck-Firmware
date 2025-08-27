@@ -56,8 +56,9 @@
 // Voltage divider resistors (ohms)
 #define VIN_R1_OHM             (99000U)  // Upper resistor
 #define VIN_R2_OHM             (1000U)   // Lower resistor
-#define VOUT_R1_OHM            (196200U)
-#define VOUT_R2_OHM            (3195U)
+
+#define VOUT_R1_OHM            (196200U) // Upper resistor
+#define VOUT_R2_OHM            (3195U) // Lower resistor
 
 // Timing (expressed in milliseconds, converted to TMR1 ticks)
 #define LED_BLINK_MS           (500U)
@@ -114,15 +115,33 @@ static volatile uint16_t ss_step_tmr_ticks = 0;    // soft-start step timer
 // FET temperature monitoring via input capture (duty extraction)
 // -----------------------------------------------------------------------------
 
+// ===== Temperature PWM capture (LMG3522 TEMP pin) =====
+// Datasheet mapping (LMG352xR030, Rev B, Jan 2025):
+// TJ[°C] = 162.3 * D + 20.1, where D = duty (0..1), fTEMP ~ 9 kHz.
+// Duty typical: ~3% @ 25°C to ~82% @ 150°C. OT fault drives TEMP = HIGH.  (TI)
+#define TEMP_PWM_PRINT_MS   200U  // UART print period
+#define TEMP_IIR_ALPHA_NUM  1U    // IIR alpha = 1/8 (light smoothing)
+#define TEMP_IIR_ALPHA_DEN  8U
+
 typedef struct {
     volatile uint32_t t_rise_prev;
     volatile uint32_t high_ticks;
     volatile uint32_t period_ticks;
-    volatile float    duty;       // last complete cycle duty
-    volatile uint8_t  have_rise;  // sync flag
-} temp_ic_t;
+    volatile uint8_t  have_rise;
+    // filtered duty in Q15 (0..32767 ? 0..100%)
+    volatile uint16_t duty_q15;
+    volatile uint8_t  valid;       // becomes 1 after first full period measured
+} temp_pwm_t;
 
-static temp_ic_t top_temp = {0};
+static temp_pwm_t fet_temp_top = {0};  // TEMP pin routed to SCCP1 (rise) + SCCP2 (fall)
+
+// Convert Q15 duty to degrees C using TJ = 162.3*D + 20.1
+// D = duty_q15 / 32768.  We'll do fixed-point: T = 162.3*(dq15/32768) + 20.1
+static inline float temp_q15_to_celsius(uint16_t duty_q15)
+{
+    float D = (float)duty_q15 / 32768.0f;
+    return (162.3f * D) + 20.1f;
+}
 
 // -----------------------------------------------------------------------------
 // Forward declarations
@@ -298,41 +317,82 @@ static uint16_t VCOMP_ControllerInitialize(void)
 // Input-capture callbacks ? derive duty of TOP FET switching
 // -----------------------------------------------------------------------------
 
-static void FET_TOP_Rise_Handler(void)
+// Rising-edge callback (SCCP1)
+static void FET_TEMP_Rise_Handler(void)
 {
-    // Drain FIFO in case multiple edges queued
     while (!SCCP1_InputCapture_IsBufferEmpty()) {
-        uint32_t t = SCCP1_InputCapture_DataRead();
+        uint32_t tr = SCCP1_InputCapture_DataRead();
 
-        if (top_temp.have_rise) {
-            // full period = (this rise) - (previous rise)
-            top_temp.period_ticks = t - top_temp.t_rise_prev; // wraps ok (unsigned)
-            if (top_temp.period_ticks != 0U) {
-                // duty for the *last* cycle uses the high-time captured at the fall
-                top_temp.duty = (float)top_temp.high_ticks / (float)top_temp.period_ticks;
+        if (fet_temp_top.have_rise) {
+            uint32_t period = tr - fet_temp_top.t_rise_prev;   // wraps OK
+            fet_temp_top.period_ticks = period;
+
+            if (period != 0U) {
+                // Compute duty in Q15 from last measured high_ticks / period
+                // duty_q15 = (high_ticks << 15) / period
+                uint32_t num = (fet_temp_top.high_ticks << 15);
+                uint16_t duty_now = (uint16_t)(num / period);
+
+                // IIR filter to reduce jitter: y += (x - y) * alpha
+                uint16_t y = fet_temp_top.duty_q15;
+                uint16_t x = duty_now;
+                uint16_t y_new = (uint16_t)( y + ((uint32_t)(x - y) * TEMP_IIR_ALPHA_NUM) / TEMP_IIR_ALPHA_DEN );
+                fet_temp_top.duty_q15 = y_new;
+                fet_temp_top.valid = 1U;
             }
         }
 
-        top_temp.t_rise_prev = t;
-        top_temp.have_rise   = 1U;
+        fet_temp_top.t_rise_prev = tr;
+        fet_temp_top.have_rise   = 1U;
     }
 
     if (SCCP1_InputCapture_HasBufferOverflowed()) {
-        SCCP1_InputCapture_OverflowFlagClear(); // recover if ISR was late
-        top_temp.have_rise = 0U;                // resync
+        SCCP1_InputCapture_OverflowFlagClear();
+        fet_temp_top.have_rise = 0U;    // resync
+        fet_temp_top.valid = 0U;
     }
 }
 
-static void FET_TOP_Fall_Handler(void)
+// Falling-edge callback (SCCP2)
+static void FET_TEMP_Fall_Handler(void)
 {
     while (!SCCP2_InputCapture_IsBufferEmpty()) {
-        uint32_t t = SCCP2_InputCapture_DataRead();
-        // high-time = (this fall) - (most recent rise)
-        top_temp.high_ticks = t - top_temp.t_rise_prev;
+        uint32_t tf = SCCP2_InputCapture_DataRead();
+        // high time is from last rise to this fall
+        fet_temp_top.high_ticks = tf - fet_temp_top.t_rise_prev;
     }
 
     if (SCCP2_InputCapture_HasBufferOverflowed()) {
-        SCCP2_InputCapture_OverflowFlagClear(); // high_ticks may be stale; next rise resyncs
+        SCCP2_InputCapture_OverflowFlagClear();
+        // high_ticks may be stale; next rise will resync calculation
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Temperature telemetry task ? prints duty cycle & junction temp over UART
+// -----------------------------------------------------------------------------
+
+static void TemperatureTelemetryTask(void)
+{
+    static uint16_t temp_print_tmr = 0;
+
+    if (temp_print_tmr < TICKS_FROM_MS(TEMP_PWM_PRINT_MS)) {
+        temp_print_tmr++;
+        return;
+    }
+    temp_print_tmr = 0;
+
+    if (fet_temp_top.valid) {
+        float tempC = temp_q15_to_celsius(fet_temp_top.duty_q15);
+        uint16_t duty_percent = (uint16_t)((uint32_t)fet_temp_top.duty_q15 * 100U / 32768U);
+
+        #ifdef DEBUG
+        printf("TEMP duty=%u%%  TJ=%.1f C\r\n", duty_percent, tempC);
+        #endif
+    } else {
+        #ifdef DEBUG
+        printf("TEMP: syncing...\r\n");
+        #endif
     }
 }
 
@@ -376,8 +436,8 @@ int main(void)
 #endif
 
     // Input capture callbacks (TOP FET switching)
-    SCCP1_InputCapture_CallbackRegister(FET_TOP_Rise_Handler);   // rising-only IC
-    SCCP2_InputCapture_CallbackRegister(FET_TOP_Fall_Handler);   // falling-only IC
+    SCCP1_InputCapture_CallbackRegister(FET_TEMP_Rise_Handler);  // TEMP rising edges
+    SCCP2_InputCapture_CallbackRegister(FET_TEMP_Fall_Handler);  // TEMP falling edges
 #ifdef DEBUG
     printf("All Interrupts Enabled...\r\n");
 #endif
@@ -386,6 +446,7 @@ int main(void)
 
     while (1) {
         VoltageReadout();
+        TemperatureTelemetryTask();
         DELAY_milliseconds(500);
     }
 }
