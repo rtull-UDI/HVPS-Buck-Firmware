@@ -377,23 +377,41 @@ static void TemperatureTelemetryTask(void)
 {
     static uint32_t t_last_ms = 0;
 
-    if ((uint32_t)(g_ms - t_last_ms) < TEMP_PWM_PRINT_MS) {
+    // ---- Snapshot g_ms atomically (very short critical section) ----
+    uint32_t now_ms;
+    uint16_t sr = __builtin_get_sr();
+    __builtin_disi(0x3FFF);          // disable interrupts
+    now_ms = g_ms;
+    __builtin_write_SR(sr);          // restore SR (re-enables ints)
+
+    if ((uint32_t)(now_ms - t_last_ms) < TEMP_PWM_PRINT_MS) {
         return;
     }
-    t_last_ms = g_ms;
+    t_last_ms = now_ms;
 
     if (fet_temp_top.valid) {
-        float tempC = temp_q15_to_celsius(fet_temp_top.duty_q15);
-        uint16_t duty_percent = (uint16_t)((uint32_t)fet_temp_top.duty_q15 * 100U / 32768U);
+        // Clamp to safe range
+        uint16_t dq = fet_temp_top.duty_q15;
+        if (dq > 32767u) dq = 32767u;
+
+        // Rounded percent = (dq * 100 + 0.5) / 32768
+        uint16_t duty_percent = (uint16_t)(((uint32_t)dq * 100u + 16384u) / 32768u);
+
+        // If float printf is enabled:
+        float tempC = temp_q15_to_celsius(dq);
         printf("TEMP duty=%u%%  TJ=%.1f C\r\n", duty_percent, tempC);
 
-        // Optional: detect ?stuck high? OT/fault if you like:
-        // if (duty_percent > 95U) printf("TEMP: OT/Fault detected\r\n");
+        // If you prefer integer-only (uncomment and comment out the float printf above):
+        // uint32_t tempCx10 = (uint32_t)((1623u * dq) / 327u) + 201; // ~ (162.3 * D + 20.1)*10
+        // printf("TEMP duty=%u%%  TJ=%lu.%lu C\r\n",
+        //        duty_percent, (unsigned long)(tempCx10/10), (unsigned long)(tempCx10%10));
+
+        // Optional: treat >95% as stuck-high (OT/fault)
+        // if (duty_percent > 95u) printf("TEMP: OT/Fault detected\r\n");
     } else {
         printf("TEMP: syncing...\r\n");
     }
 }
-
 // -----------------------------------------------------------------------------
 // Application entry
 // -----------------------------------------------------------------------------
