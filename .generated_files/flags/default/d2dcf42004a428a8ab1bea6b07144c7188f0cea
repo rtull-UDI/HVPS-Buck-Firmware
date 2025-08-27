@@ -1,0 +1,1 @@
+ -c -mcpu=$(MP_PROCESSOR_OPTION)      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"T:\22064 Electro-Mech Program Add\22064B HVPS\02-Project Folder\01-Electrical\03-Firmware\DriverBuck\Full Digital Control\CH512MP506_Controller.X\VCOMP.c

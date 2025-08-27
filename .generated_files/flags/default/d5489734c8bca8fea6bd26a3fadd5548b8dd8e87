@@ -1,0 +1,1 @@
+ -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -DXPRJ_default=$(CND_CONF)    -Wa,-g,--no-relax$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"T:\22064 Electro-Mech Program Add\22064B HVPS\02-Project Folder\01-Electrical\03-Firmware\DriverBuck\Full Digital Control\CH512MP506_Controller.X\VCOMP_asm.s
