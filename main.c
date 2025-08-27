@@ -69,29 +69,29 @@
 #define VBUCK_RAMP_STEP        ((uint32_t)1U)
 
 // Millivolt setpoints (runtime-tweakable; keep as variables if adjusted elsewhere)
-static uint32_t VIN_TH_ON_MV  = 210000U;
+static uint32_t VIN_TH_ON_MV = 210000U;
 static uint32_t VIN_TH_OFF_MV = 205000U;
-static uint32_t VBUCK_REF_MV  = 180000U;
+static uint32_t VBUCK_REF_MV = 180000U;
 
 // Integer scale factors (×100 to preserve two decimals)
-static int64_t VIN_SCALE_X100  = 0;
+static int64_t VIN_SCALE_X100 = 0;
 static int64_t VOUT_SCALE_X100 = 0;
 
 // ADC threshold equivalents (counts)
-static uint32_t VIN_TH_ON_ADC  = 0;
+static uint32_t VIN_TH_ON_ADC = 0;
 static uint32_t VIN_TH_OFF_ADC = 0;
-static uint32_t VBUCK_REF_ADC  = 0;
+static uint32_t VBUCK_REF_ADC = 0;
 
 // Raw ADC samples (updated in ADC callback)
-static volatile uint16_t adc_vin_raw  = 0;
+static volatile uint16_t adc_vin_raw = 0;
 static volatile uint16_t adc_vout_raw = 0;
 
 // Debounced/latched copies used by main loop
-static volatile uint16_t adc_vin  = 0;
+static volatile uint16_t adc_vin = 0;
 static volatile uint16_t adc_vout = 0;
 
 // Computed real voltages in millivolts
-static volatile uint32_t vin_mv  = 0;
+static volatile uint32_t vin_mv = 0;
 static volatile uint32_t vout_mv = 0;
 
 // Control reference (in ADC counts), adjusted by soft-start state machine
@@ -107,9 +107,9 @@ typedef enum {
 } fsm_state_t;
 
 static volatile fsm_state_t fsm_state = FSM_IDLE;
-static volatile uint16_t led_tmr_ticks = 0;        // heartbeat
-static volatile uint16_t start_tmr_ticks = 0;      // VIN debounce timer
-static volatile uint16_t ss_step_tmr_ticks = 0;    // soft-start step timer
+static volatile uint16_t led_tmr_ticks = 0; // heartbeat
+static volatile uint16_t start_tmr_ticks = 0; // VIN debounce timer
+static volatile uint16_t ss_step_tmr_ticks = 0; // soft-start step timer
 
 // -----------------------------------------------------------------------------
 // FET temperature monitoring via input capture (duty extraction)
@@ -127,19 +127,22 @@ typedef struct {
     volatile uint32_t t_rise_prev;
     volatile uint32_t high_ticks;
     volatile uint32_t period_ticks;
-    volatile uint8_t  have_rise;
+    volatile uint8_t have_rise;
     // filtered duty in Q15 (0..32767 ? 0..100%)
     volatile uint16_t duty_q15;
-    volatile uint8_t  valid;       // becomes 1 after first full period measured
+    volatile uint8_t valid; // becomes 1 after first full period measured
 } temp_pwm_t;
 
-static temp_pwm_t fet_temp_top = {0};  // TEMP pin routed to SCCP1 (rise) + SCCP2 (fall)
+static temp_pwm_t fet_temp_top = {0}; // TEMP pin routed to SCCP1 (rise) + SCCP2 (fall)
+
+// Millisecond tick from TMR1 ISR
+static volatile uint32_t g_ms = 0;
 
 // Convert Q15 duty to degrees C using TJ = 162.3*D + 20.1
 // D = duty_q15 / 32768.  We'll do fixed-point: T = 162.3*(dq15/32768) + 20.1
-static inline float temp_q15_to_celsius(uint16_t duty_q15)
-{
-    float D = (float)duty_q15 / 32768.0f;
+
+static inline float temp_q15_to_celsius(uint16_t duty_q15) {
+    float D = (float) duty_q15 / 32768.0f;
     return (162.3f * D) + 20.1f;
 }
 
@@ -158,8 +161,9 @@ static uint16_t VCOMP_ControllerInitialize(void);
 // Timer1 callback ? heartbeat, state machine, and soft-start
 // -----------------------------------------------------------------------------
 
-static void TMR1_INT(void)
-{
+static void TMR1_INT(void) {
+    g_ms++;
+
     // Heartbeat on LD2/LD3
     if (++led_tmr_ticks >= TICKS_FROM_MS(LED_BLINK_MS)) {
         led_tmr_ticks = 0U;
@@ -191,9 +195,9 @@ static void TMR1_INT(void)
                 ss_step_tmr_ticks++;
             } else {
                 ss_step_tmr_ticks = 0U;
-                if (ref_vbuck < (int)VBUCK_REF_ADC) {
-                    ref_vbuck += (int)VBUCK_RAMP_STEP;
-                    if (ref_vbuck > (int)VBUCK_REF_ADC) ref_vbuck = (int)VBUCK_REF_ADC; // clamp
+                if (ref_vbuck < (int) VBUCK_REF_ADC) {
+                    ref_vbuck += (int) VBUCK_RAMP_STEP;
+                    if (ref_vbuck > (int) VBUCK_REF_ADC) ref_vbuck = (int) VBUCK_REF_ADC; // clamp
                 }
             }
 
@@ -214,10 +218,9 @@ static void TMR1_INT(void)
 // ADC Channel callback ? capture VIN/VOUT raw samples
 // -----------------------------------------------------------------------------
 
-static void AN1_INT(enum ADC_CHANNEL channel, uint16_t adcVal)
-{
-    (void)channel; // unused in this callback
-    (void)adcVal;
+static void AN1_INT(enum ADC_CHANNEL channel, uint16_t adcVal) {
+    (void) channel; // unused in this callback
+    (void) adcVal;
 
     // Optionally show a short LED pulse every N samples without double-toggle
     static uint8_t led_div = 0U;
@@ -226,7 +229,7 @@ static void AN1_INT(enum ADC_CHANNEL channel, uint16_t adcVal)
     }
 
     // Direct reads of ADCBUFx based on MCC buffer assignment
-    adc_vin_raw  = ADCBUF1; // VIN
+    adc_vin_raw = ADCBUF1; // VIN
     adc_vout_raw = ADCBUF0; // VOUT
 
     //VCOMP_Update(&VCOMP);
@@ -237,28 +240,27 @@ static void AN1_INT(enum ADC_CHANNEL channel, uint16_t adcVal)
 // Scaling and threshold pre-computation
 // -----------------------------------------------------------------------------
 
-static void ScaleCalculate(void)
-{
+static void ScaleCalculate(void) {
     if (ADC_MAX_COUNT != 0U) {
         // 64-bit math keeps precision (costly on 16-bit core but done once here)
-        VIN_SCALE_X100  = ((int64_t)VREF_MV * (VIN_R1_OHM  + VIN_R2_OHM)  * 100) / ((int64_t)VIN_R2_OHM  * ADC_MAX_COUNT);
-        VOUT_SCALE_X100 = ((int64_t)VREF_MV * (VOUT_R1_OHM + VOUT_R2_OHM) * 100) / ((int64_t)VOUT_R2_OHM * ADC_MAX_COUNT);
+        VIN_SCALE_X100 = ((int64_t) VREF_MV * (VIN_R1_OHM + VIN_R2_OHM) * 100) / ((int64_t) VIN_R2_OHM * ADC_MAX_COUNT);
+        VOUT_SCALE_X100 = ((int64_t) VREF_MV * (VOUT_R1_OHM + VOUT_R2_OHM) * 100) / ((int64_t) VOUT_R2_OHM * ADC_MAX_COUNT);
     } else {
-        VIN_SCALE_X100  = 1;
+        VIN_SCALE_X100 = 1;
         VOUT_SCALE_X100 = 1;
     }
 
-    VIN_TH_ON_ADC  = (uint32_t)((((int64_t)VIN_TH_ON_MV  * 100) + (VIN_SCALE_X100  / 2)) / VIN_SCALE_X100);
-    VIN_TH_OFF_ADC = (uint32_t)((((int64_t)VIN_TH_OFF_MV * 100) + (VIN_SCALE_X100  / 2)) / VIN_SCALE_X100);
-    VBUCK_REF_ADC  = (uint32_t)((((int64_t)VBUCK_REF_MV * 100) + (VOUT_SCALE_X100 / 2)) / VOUT_SCALE_X100);
+    VIN_TH_ON_ADC = (uint32_t) ((((int64_t) VIN_TH_ON_MV * 100) + (VIN_SCALE_X100 / 2)) / VIN_SCALE_X100);
+    VIN_TH_OFF_ADC = (uint32_t) ((((int64_t) VIN_TH_OFF_MV * 100) + (VIN_SCALE_X100 / 2)) / VIN_SCALE_X100);
+    VBUCK_REF_ADC = (uint32_t) ((((int64_t) VBUCK_REF_MV * 100) + (VOUT_SCALE_X100 / 2)) / VOUT_SCALE_X100);
 
 #ifdef DEBUG
     printf("\r\nSCALE CALCULATIONS\r\n");
     printf("VIN_SCALE_X100:  %lld\r\n", VIN_SCALE_X100);
     printf("VOUT_SCALE_X100: %lld\r\n", VOUT_SCALE_X100);
-    printf("VIN ON  threshold (ADC):  %lu\r\n", (unsigned long)VIN_TH_ON_ADC);
-    printf("VIN OFF threshold (ADC):  %lu\r\n", (unsigned long)VIN_TH_OFF_ADC);
-    printf("VBUCK REF         (ADC):  %lu\r\n\r\n", (unsigned long)VBUCK_REF_ADC);
+    printf("VIN ON  threshold (ADC):  %lu\r\n", (unsigned long) VIN_TH_ON_ADC);
+    printf("VIN OFF threshold (ADC):  %lu\r\n", (unsigned long) VIN_TH_OFF_ADC);
+    printf("VBUCK REF         (ADC):  %lu\r\n\r\n", (unsigned long) VBUCK_REF_ADC);
 #endif
 }
 
@@ -266,22 +268,21 @@ static void ScaleCalculate(void)
 // Convert last raw samples to millivolts and print (debug)
 // -----------------------------------------------------------------------------
 
-static void VoltageReadout(void)
-{
+static void VoltageReadout(void) {
     // Latch the latest raw ADC readings from the interrupt context (16-bit atomic)
-    adc_vin  = adc_vin_raw;
+    adc_vin = adc_vin_raw;
     adc_vout = adc_vout_raw;
 
     // Convert raw ADC -> millivolts
-    int64_t vin_temp  = ((int64_t)adc_vin  * VIN_SCALE_X100)  / 100;
-    int64_t vout_temp = ((int64_t)adc_vout * VOUT_SCALE_X100) / 100;
+    int64_t vin_temp = ((int64_t) adc_vin * VIN_SCALE_X100) / 100;
+    int64_t vout_temp = ((int64_t) adc_vout * VOUT_SCALE_X100) / 100;
 
-    vin_mv  = (uint32_t)vin_temp;
-    vout_mv = (uint32_t)vout_temp;
+    vin_mv = (uint32_t) vin_temp;
+    vout_mv = (uint32_t) vout_temp;
 
 #ifdef DEBUG
-    printf("\r\nVIN  ADC: %u => %lu mV\r\n", adc_vin,  (unsigned long)vin_mv);
-    printf("VOUT ADC: %u => %lu mV\r\n\r\n", adc_vout, (unsigned long)vout_mv);
+    printf("\r\nVIN  ADC: %u => %lu mV\r\n", adc_vin, (unsigned long) vin_mv);
+    printf("VOUT ADC: %u => %lu mV\r\n\r\n", adc_vout, (unsigned long) vout_mv);
 #endif
 }
 
@@ -289,22 +290,21 @@ static void VoltageReadout(void)
 // Voltage-mode controller wiring (PowerSmart DCLib wrapper)
 // -----------------------------------------------------------------------------
 
-static uint16_t VCOMP_ControllerInitialize(void)
-{
+static uint16_t VCOMP_ControllerInitialize(void) {
     volatile uint16_t retval = 0U; // function call verification
 
     // Primary input (feedback)
     VCOMP.Ports.Source.ptrAddress = &adc_vout_raw; // ADC buffer variable (feedback)
 
     // Primary output (actuation)
-    VCOMP.Ports.Target.ptrAddress = &PG1DC;        // PWM duty SFR (unit: PG clock ticks)
+    VCOMP.Ports.Target.ptrAddress = &PG1DC; // PWM duty SFR (unit: PG clock ticks)
 
     // Control reference (soft-start ramped target)
-    VCOMP.Ports.ptrControlReference = (unsigned*)&ref_vbuck;
+    VCOMP.Ports.ptrControlReference = (unsigned*) &ref_vbuck;
 
     // Output limits (in PG1DC units)
-    VCOMP.Limits.MinOutput = 500;   // ~10% of PG1PER (verify w/ your PWM period)
-    VCOMP.Limits.MaxOutput = 9000;  // ~90% of PG1PER
+    VCOMP.Limits.MinOutput = 500; // ~10% of PG1PER (verify w/ your PWM period)
+    VCOMP.Limits.MaxOutput = 9000; // ~90% of PG1PER
 
     // Initialize controller data arrays and scalers
     retval = VCOMP_Initialize(&VCOMP);
@@ -318,44 +318,45 @@ static uint16_t VCOMP_ControllerInitialize(void)
 // -----------------------------------------------------------------------------
 
 // Rising-edge callback (SCCP1)
-static void FET_TEMP_Rise_Handler(void)
-{
+
+static void FET_TOP_Rise_Handler(void) {
     while (!SCCP1_InputCapture_IsBufferEmpty()) {
         uint32_t tr = SCCP1_InputCapture_DataRead();
 
         if (fet_temp_top.have_rise) {
-            uint32_t period = tr - fet_temp_top.t_rise_prev;   // wraps OK
+            uint32_t period = tr - fet_temp_top.t_rise_prev; // wraps OK
             fet_temp_top.period_ticks = period;
 
             if (period != 0U) {
                 // Compute duty in Q15 from last measured high_ticks / period
                 // duty_q15 = (high_ticks << 15) / period
-                uint32_t num = (fet_temp_top.high_ticks << 15);
-                uint16_t duty_now = (uint16_t)(num / period);
+                uint64_t num = ((uint64_t) fet_temp_top.high_ticks << 15);
+                uint16_t duty_now = (uint16_t) (num / period);
 
-                // IIR filter to reduce jitter: y += (x - y) * alpha
+                // IIR filter: y += (x - y) * alpha   (use signed diff to avoid wrap)
                 uint16_t y = fet_temp_top.duty_q15;
                 uint16_t x = duty_now;
-                uint16_t y_new = (uint16_t)( y + ((uint32_t)(x - y) * TEMP_IIR_ALPHA_NUM) / TEMP_IIR_ALPHA_DEN );
+                int32_t diff = (int32_t) x - (int32_t) y;
+                uint16_t y_new = (uint16_t) ((int32_t) y + (diff * (int32_t) TEMP_IIR_ALPHA_NUM) / (int32_t) TEMP_IIR_ALPHA_DEN);
                 fet_temp_top.duty_q15 = y_new;
                 fet_temp_top.valid = 1U;
             }
         }
 
         fet_temp_top.t_rise_prev = tr;
-        fet_temp_top.have_rise   = 1U;
+        fet_temp_top.have_rise = 1U;
     }
 
     if (SCCP1_InputCapture_HasBufferOverflowed()) {
         SCCP1_InputCapture_OverflowFlagClear();
-        fet_temp_top.have_rise = 0U;    // resync
+        fet_temp_top.have_rise = 0U; // resync
         fet_temp_top.valid = 0U;
     }
 }
 
 // Falling-edge callback (SCCP2)
-static void FET_TEMP_Fall_Handler(void)
-{
+
+static void FET_TOP_Fall_Handler(void) {
     while (!SCCP2_InputCapture_IsBufferEmpty()) {
         uint32_t tf = SCCP2_InputCapture_DataRead();
         // high time is from last rise to this fall
@@ -374,25 +375,22 @@ static void FET_TEMP_Fall_Handler(void)
 
 static void TemperatureTelemetryTask(void)
 {
-    static uint16_t temp_print_tmr = 0;
+    static uint32_t t_last_ms = 0;
 
-    if (temp_print_tmr < TICKS_FROM_MS(TEMP_PWM_PRINT_MS)) {
-        temp_print_tmr++;
+    if ((uint32_t)(g_ms - t_last_ms) < TEMP_PWM_PRINT_MS) {
         return;
     }
-    temp_print_tmr = 0;
+    t_last_ms = g_ms;
 
     if (fet_temp_top.valid) {
         float tempC = temp_q15_to_celsius(fet_temp_top.duty_q15);
         uint16_t duty_percent = (uint16_t)((uint32_t)fet_temp_top.duty_q15 * 100U / 32768U);
-
-        #ifdef DEBUG
         printf("TEMP duty=%u%%  TJ=%.1f C\r\n", duty_percent, tempC);
-        #endif
+
+        // Optional: detect ?stuck high? OT/fault if you like:
+        // if (duty_percent > 95U) printf("TEMP: OT/Fault detected\r\n");
     } else {
-        #ifdef DEBUG
         printf("TEMP: syncing...\r\n");
-        #endif
     }
 }
 
@@ -400,8 +398,7 @@ static void TemperatureTelemetryTask(void)
 // Application entry
 // -----------------------------------------------------------------------------
 
-int main(void)
-{
+int main(void) {
     SYSTEM_Initialize();
 #ifdef DEBUG
     printf("System Initialized...\r\n");
@@ -436,8 +433,8 @@ int main(void)
 #endif
 
     // Input capture callbacks (TOP FET switching)
-    SCCP1_InputCapture_CallbackRegister(FET_TEMP_Rise_Handler);  // TEMP rising edges
-    SCCP2_InputCapture_CallbackRegister(FET_TEMP_Fall_Handler);  // TEMP falling edges
+    SCCP1_InputCapture_CallbackRegister(FET_TOP_Rise_Handler); // TEMP rising edges
+    SCCP2_InputCapture_CallbackRegister(FET_TOP_Fall_Handler); // TEMP falling edges
 #ifdef DEBUG
     printf("All Interrupts Enabled...\r\n");
 #endif
