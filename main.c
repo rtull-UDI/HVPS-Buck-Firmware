@@ -25,6 +25,8 @@
 #include "mcc_generated_files/input_capture/input_capture_interface.h"
 #include "mcc_generated_files/input_capture/sccp1.h"
 #include "mcc_generated_files/input_capture/sccp2.h"
+#include "mcc_generated_files/input_capture/sccp3.h"
+#include "mcc_generated_files/input_capture/sccp4.h"
 
 #include "VCOMP.h"
 #include "npnz16b.h"
@@ -140,6 +142,7 @@ typedef struct {
 } temp_pwm_t;
 
 static temp_pwm_t fet_temp_top = {0}; // TEMP pin routed to SCCP1 (rise) + SCCP2 (fall)
+static temp_pwm_t fet_temp_bot = {0};
 
 // Millisecond tick from TMR1 ISR
 static volatile uint32_t g_ms = 0;
@@ -359,68 +362,104 @@ static void FET_TOP_Fall_Handler(void)
     }
 }
 
+static void FET_BOT_Rise_Handler(void)
+{
+    // Read a single timestamp per interrupt; store only
+    if (!SCCP3_InputCapture_IsBufferEmpty()) {
+        uint32_t tr = SCCP3_InputCapture_DataRead();
+        // Shift current -> prev, then latch new rise
+        fet_temp_bot.rise_prev_ts = fet_temp_bot.rise_curr_ts;
+        fet_temp_bot.rise_curr_ts = tr;
+        fet_temp_bot.new_rise = 1U;
+    }
+
+    if (SCCP3_InputCapture_HasBufferOverflowed()) {
+        SCCP3_InputCapture_OverflowFlagClear();
+        fet_temp_bot.overflow = 1U;   // main can react/log
+    }   
+}
+
+static void FET_BOT_Fall_Handler(void)
+{
+    // Read a single timestamp per interrupt; store only
+    if (!SCCP4_InputCapture_IsBufferEmpty()) {
+        uint32_t tf = SCCP4_InputCapture_DataRead();
+        fet_temp_bot.fall_ts = tf;
+        fet_temp_bot.new_fall = 1U;
+    }
+
+    if (SCCP4_InputCapture_HasBufferOverflowed()) {
+        SCCP4_InputCapture_OverflowFlagClear();
+        fet_temp_bot.overflow = 1U;   // main can react/log
+    }
+}
+
+
 // -----------------------------------------------------------------------------
 // Temperature telemetry task ? prints duty cycle & junction temp over UART
 // -----------------------------------------------------------------------------
 
-static void TemperatureTelemetryTask(void)
+// -----------------------------------------------------------------------------
+// Temperature telemetry task ? prints duty cycle & junction temp over UART
+// -----------------------------------------------------------------------------
+
+static void TempChannelService(temp_pwm_t* ch, const char* name)
 {
-    static uint32_t t_last_ms = 0;
+    // Consume edge flags and compute once per call (no work in ISR)
+    uint8_t  have_rise = ch->new_rise;
+    uint8_t  have_fall = ch->new_fall;
+    uint32_t rise_prev = ch->rise_prev_ts;
+    uint32_t rise_curr = ch->rise_curr_ts;
+    uint32_t fall      = ch->fall_ts;
 
-    // ---- Consume edge flags and compute once per call (no work in ISR) ----
-    // Snapshot edge flags & timestamps (simple reads are acceptable here)
-    uint8_t  have_rise = fet_temp_top.new_rise;
-    uint8_t  have_fall = fet_temp_top.new_fall;
-    uint32_t rise_prev = fet_temp_top.rise_prev_ts;
-    uint32_t rise_curr = fet_temp_top.rise_curr_ts;
-    uint32_t fall      = fet_temp_top.fall_ts;
+    if (have_rise) ch->new_rise = 0U;
+    if (have_fall) ch->new_fall = 0U;
 
-    if (have_rise) fet_temp_top.new_rise = 0U;
-    if (have_fall) fet_temp_top.new_fall = 0U;
-
-    // On each new rise, form a period. If a fall occurred within that window,
-    // also form a high-time for that cycle.
     if (have_rise) {
         uint32_t period = rise_curr - rise_prev; // wraps OK
         if (period != 0U) {
             uint32_t high = fall - rise_prev;    // wraps OK
             if (have_fall && high <= period) {
-                // duty_q15 = (high << 15) / period
                 uint64_t num = ((uint64_t)high << 15);
                 uint16_t duty_now = (uint16_t)(num / (uint64_t)period);
 
-                // IIR filter with signed diff to avoid wrap
-                uint16_t y = fet_temp_top.duty_q15;
+                uint16_t y = ch->duty_q15;
                 uint16_t x = duty_now;
                 int32_t  diff = (int32_t)x - (int32_t)y;
-                uint16_t y_new = (uint16_t)((int32_t)y + (diff * (int32_t)TEMP_IIR_ALPHA_NUM) / (int32_t)TEMP_IIR_ALPHA_DEN);
-
-                fet_temp_top.duty_q15 = y_new;
-                fet_temp_top.valid    = 1U;
+                ch->duty_q15 = (uint16_t)((int32_t)y + (diff * (int32_t)TEMP_IIR_ALPHA_NUM) / (int32_t)TEMP_IIR_ALPHA_DEN);
+                ch->valid = 1U;
             }
         }
     }
 
-    // ---- Snapshot g_ms without disabling interrupts (double-read) ----
+    if (ch->valid) {
+        uint16_t dq = ch->duty_q15;
+        if (dq > 32767u) dq = 32767u;
+        uint16_t duty_percent = (uint16_t)(((uint32_t)dq * 100u + 16384u) / 32768u);
+        float tempC = temp_q15_to_celsius(dq);
+        printf("TEMP[%s] duty=%u%%  TJ=%.1f C", name, duty_percent, (double)tempC);
+    } else {
+        printf("TEMP[%s]: syncing...", name);
+    }
+}
+
+static void TemperatureTelemetryTask(void)
+{
+    static uint32_t t_last_ms = 0;
+
+    // Snapshot g_ms without disabling interrupts (double-read)
     uint32_t now_ms_1, now_ms_2;
     do { now_ms_1 = g_ms; now_ms_2 = g_ms; } while (now_ms_1 != now_ms_2);
     uint32_t now_ms = now_ms_2;
 
-    // ---- Rate-limit printing ----
     if ((uint32_t)(now_ms - t_last_ms) < TEMP_PWM_PRINT_MS) {
         return;
     }
     t_last_ms = now_ms;
 
-    if (fet_temp_top.valid) {
-        uint16_t dq = fet_temp_top.duty_q15;
-        if (dq > 32767u) dq = 32767u; // clamp
-        uint16_t duty_percent = (uint16_t)(((uint32_t)dq * 100u + 16384u) / 32768u);
-        float tempC = temp_q15_to_celsius(dq);
-        printf("TEMP duty=%u%%  TJ=%.1f C", duty_percent, (double)tempC);
-    } else {
-        printf("TEMP: syncing...");
-    }
+    // Service both channels
+    TempChannelService(&fet_temp_top, "TOP");
+    TempChannelService(&fet_temp_bot, "BOT");
 }
 // -----------------------------------------------------------------------------
 // Application entry
@@ -463,10 +502,14 @@ int main(void) {
     // Flush IC FIFOs before enabling callbacks (prevents burst on start)
 while (!SCCP1_InputCapture_IsBufferEmpty()) (void)SCCP1_InputCapture_DataRead();
 while (!SCCP2_InputCapture_IsBufferEmpty()) (void)SCCP2_InputCapture_DataRead();
+while (!SCCP3_InputCapture_IsBufferEmpty()) (void)SCCP3_InputCapture_DataRead();
+while (!SCCP4_InputCapture_IsBufferEmpty()) (void)SCCP4_InputCapture_DataRead();
 
 // Input capture callbacks ? TEMP pin measurement
-SCCP1_InputCapture_CallbackRegister(FET_TOP_Rise_Handler); // TEMP rising edges
-SCCP2_InputCapture_CallbackRegister(FET_TOP_Fall_Handler); // TEMP falling edges; // TEMP falling edges
+SCCP1_InputCapture_CallbackRegister(FET_TOP_Rise_Handler); // TOP TEMP rising edges
+SCCP2_InputCapture_CallbackRegister(FET_TOP_Fall_Handler); // TOP TEMP falling edges
+SCCP3_InputCapture_CallbackRegister(FET_BOT_Rise_Handler); // BOT TEMP rising edges
+SCCP4_InputCapture_CallbackRegister(FET_BOT_Fall_Handler); // BOT TEMP falling edges
 #ifdef DEBUG
     printf("All Interrupts Enabled...\r\n");
 #endif
