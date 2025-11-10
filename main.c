@@ -419,8 +419,7 @@ static void TemperatureTelemetryTask(void)
         float tempC = temp_q15_to_celsius(dq);
         printf("TEMP duty=%u%%  TJ=%.1f C", duty_percent, (double)tempC);
     } else {
-        printf("TEMP: syncing...
-");
+        printf("TEMP: syncing...");
     }
 }
 // -----------------------------------------------------------------------------
