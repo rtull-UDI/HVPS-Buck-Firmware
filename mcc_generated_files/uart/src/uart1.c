@@ -43,7 +43,7 @@
 #include "../uart1.h"
 
 // Section: Macro Definitions
-#define UART1_CLOCK 90000000U
+#define UART1_CLOCK 180000000U
 #define UART1_BAUD_TO_BRG_WITH_FRACTIONAL(x) (UART1_CLOCK/(x))
 #define UART1_BAUD_TO_BRG_WITH_BRGH_1(x) (UART1_CLOCK/(4U*(x))-1U)
 #define UART1_BAUD_TO_BRG_WITH_BRGH_0(x) (UART1_CLOCK/(16U*(x))-1U)
@@ -51,8 +51,8 @@
 #define UART1_BRG_TO_BAUD_WITH_BRGH_1(x) (UART1_CLOCK/(4U*((x)+1U)))
 #define UART1_BRG_TO_BAUD_WITH_BRGH_0(x) (UART1_CLOCK/(16U*((x)+1U)))
 
-#define UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL 86U
-#define UART1_MIN_ACHIEVABLE_BAUD_WITH_BRGH_1 21U
+#define UART1_MIN_ACHIEVABLE_BAUD_WITH_FRACTIONAL 172U
+#define UART1_MIN_ACHIEVABLE_BAUD_WITH_BRGH_1 43U
 
 // Section: Driver Interface
 
@@ -109,14 +109,14 @@ void UART1_Initialize(void)
 */
     // URXEN ; RXBIMD ; UARTEN disabled; MOD Asynchronous 8-bit UART; UTXBRK ; BRKOVR ; UTXEN ; USIDL ; WAKE ; ABAUD ; BRGH ; 
     U1MODE = 0x0;
-    // STSEL 1 Stop bit sent, 1 checked at RX; BCLKMOD enabled; SLPEN ; FLO ; BCLKSEL FOSC/2; C0EN ; RUNOVF ; UTXINV ; URXINV ; HALFDPLX ; 
-    U1MODEH = 0x800;
+    // STSEL 1 Stop bit sent, 1 checked at RX; BCLKMOD enabled; SLPEN ; FLO ; BCLKSEL FOSC; C0EN ; RUNOVF ; UTXINV ; URXINV ; HALFDPLX ; 
+    U1MODEH = 0xC00;
     // OERIE ; RXBKIF ; RXBKIE ; ABDOVF ; OERR ; TXCIE ; TXCIF ; FERIE ; TXMTIE ; ABDOVE ; CERIE ; CERIF ; PERIE ; 
     U1STA = 0x80;
     // URXISEL ; UTXBE ; UTXISEL ; URXBE ; STPMD ; TXWRE ; 
     U1STAH = 0x2E;
-    // BaudRate 9600.00; Frequency 90000000 Hz; BRG 9375; 
-    U1BRG = 0x249F;
+    // BaudRate 4390243.90; Frequency 180000000 Hz; BRG 41; 
+    U1BRG = 0x29;
     // BRG 0; 
     U1BRGH = 0x0;
     
