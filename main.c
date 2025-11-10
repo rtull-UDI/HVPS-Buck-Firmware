@@ -70,6 +70,8 @@
 // Soft-start ramp step (in ADC counts of Vout reference)
 #define VBUCK_RAMP_STEP        ((uint32_t)1U)
 
+#define PRINT_MS   1000U  // UART print period - General
+
 // Millivolt setpoints (runtime-tweakable; keep as variables if adjusted elsewhere)
 static uint32_t VIN_TH_ON_MV = 210000U;
 static uint32_t VIN_TH_OFF_MV = 205000U;
@@ -97,7 +99,7 @@ static volatile uint32_t vin_mv = 0;
 static volatile uint32_t vout_mv = 0;
 
 // Control reference (in ADC counts), adjusted by soft-start state machine
-static volatile int ref_vbuck = 0;
+static volatile uint16_t ref_vbuck = 0;
 
 // -----------------------------------------------------------------------------
 // Simple state machine for startup/soft-start
@@ -121,7 +123,7 @@ static volatile uint16_t ss_step_tmr_ticks = 0; // soft-start step timer
 // Datasheet mapping (LMG352xR030, Rev B, Jan 2025):
 // TJ[°C] = 162.3 * D + 20.1, where D = duty (0..1), fTEMP ~ 9 kHz.
 // Duty typical: ~3% @ 25°C to ~82% @ 150°C. OT fault drives TEMP = HIGH.  (TI)
-#define TEMP_PWM_PRINT_MS   1000U  // UART print period
+#define TEMP_PWM_PRINT_MS   2000U  // UART print period
 #define TEMP_IIR_ALPHA_NUM  1U    // IIR alpha = 1/8 (light smoothing)
 #define TEMP_IIR_ALPHA_DEN  8U
 
@@ -166,6 +168,7 @@ static void FET_TOP_Rise_Handler(void);
 static void FET_TOP_Fall_Handler(void);
 static uint16_t VCOMP_ControllerInitialize(void);
 
+
 // -----------------------------------------------------------------------------
 // Timer1 callback ? heartbeat, state machine, and soft-start
 // -----------------------------------------------------------------------------
@@ -185,7 +188,7 @@ static void TMR1_INT(void) {
             ref_vbuck = 0; // ensure PWM demand is zero
 
             // Debounce VIN above ON threshold
-            if (adc_vin <= VIN_TH_ON_ADC) {
+            if (adc_vin_raw <= VIN_TH_ON_ADC) {
                 start_tmr_ticks = 0U;
             } else {
                 if (start_tmr_ticks < TICKS_FROM_MS(VIN_ON_DEBOUNCE_MS)) {
@@ -211,7 +214,7 @@ static void TMR1_INT(void) {
             }
 
             // Brownout ? drop back to IDLE if VIN falls below OFF threshold
-            if (adc_vin < VIN_TH_OFF_ADC) {
+            if (adc_vin_raw < VIN_TH_OFF_ADC) {
                 start_tmr_ticks = 0U;
                 fsm_state = FSM_IDLE;
             }
@@ -288,6 +291,21 @@ static void VoltageReadout(void) {
 
     vin_mv = (uint32_t) vin_temp;
     vout_mv = (uint32_t) vout_temp;
+    
+        static uint32_t t_last_ms = 0;
+
+    // Snapshot g_ms without disabling interrupts (double-read)
+    uint32_t now_ms_1, now_ms_2;
+    do {
+        now_ms_1 = g_ms;
+        now_ms_2 = g_ms;
+    } while (now_ms_1 != now_ms_2);
+    uint32_t now_ms = now_ms_2;
+
+    if ((uint32_t) (now_ms - t_last_ms) < PRINT_MS) {
+        return;
+    }
+    t_last_ms = now_ms;
 
 #ifdef DEBUG
     printf("\r\nVIN  ADC: %u => %lu mV\r\n", adc_vin, (unsigned long) vin_mv);
@@ -322,12 +340,8 @@ static uint16_t VCOMP_ControllerInitialize(void) {
     return retval;
 }
 
-
-
-
-
 // -----------------------------------------------------------------------------
-// Input-capture callbacks ? derive duty of TOP FET switching
+// Input-capture callbacks ? derive duty of TOP/BOT FET
 // -----------------------------------------------------------------------------
 
 static void FET_TOP_Rise_Handler(void) {
@@ -451,7 +465,7 @@ static void TemperatureTelemetryTask(void) {
 }
 
 // -----------------------------------------------------------------------------
-// Periperal and Interrupt Initializations
+// Peripheral and Interrupt Initializations
 // -----------------------------------------------------------------------------
 
 static void Initializations(void) {
@@ -506,7 +520,9 @@ static void Initializations(void) {
 // -----------------------------------------------------------------------------
 
 int main(void) {
+    
     SYSTEM_Initialize();
+    
 #ifdef DEBUG
     printf("System Initialized...\r\n");
 #endif
@@ -516,6 +532,6 @@ int main(void) {
     while (1) {
         VoltageReadout();
         TemperatureTelemetryTask();
-        DELAY_milliseconds(500);
+        //DELAY_milliseconds(500);
     }
 }
