@@ -121,7 +121,7 @@ static volatile uint16_t ss_step_tmr_ticks = 0; // soft-start step timer
 // Datasheet mapping (LMG352xR030, Rev B, Jan 2025):
 // TJ[°C] = 162.3 * D + 20.1, where D = duty (0..1), fTEMP ~ 9 kHz.
 // Duty typical: ~3% @ 25°C to ~82% @ 150°C. OT fault drives TEMP = HIGH.  (TI)
-#define TEMP_PWM_PRINT_MS   200U  // UART print period
+#define TEMP_PWM_PRINT_MS   1000U  // UART print period
 #define TEMP_IIR_ALPHA_NUM  1U    // IIR alpha = 1/8 (light smoothing)
 #define TEMP_IIR_ALPHA_DEN  8U
 
@@ -364,33 +364,28 @@ static void FET_TOP_Fall_Handler(void)
 
 static void FET_BOT_Rise_Handler(void)
 {
-    // Read a single timestamp per interrupt; store only
     if (!SCCP3_InputCapture_IsBufferEmpty()) {
         uint32_t tr = SCCP3_InputCapture_DataRead();
-        // Shift current -> prev, then latch new rise
         fet_temp_bot.rise_prev_ts = fet_temp_bot.rise_curr_ts;
         fet_temp_bot.rise_curr_ts = tr;
         fet_temp_bot.new_rise = 1U;
     }
-
     if (SCCP3_InputCapture_HasBufferOverflowed()) {
         SCCP3_InputCapture_OverflowFlagClear();
-        fet_temp_bot.overflow = 1U;   // main can react/log
-    }   
+        fet_temp_bot.overflow = 1U;
+    }
 }
 
 static void FET_BOT_Fall_Handler(void)
 {
-    // Read a single timestamp per interrupt; store only
     if (!SCCP4_InputCapture_IsBufferEmpty()) {
         uint32_t tf = SCCP4_InputCapture_DataRead();
         fet_temp_bot.fall_ts = tf;
         fet_temp_bot.new_fall = 1U;
     }
-
     if (SCCP4_InputCapture_HasBufferOverflowed()) {
         SCCP4_InputCapture_OverflowFlagClear();
-        fet_temp_bot.overflow = 1U;   // main can react/log
+        fet_temp_bot.overflow = 1U;
     }
 }
 
@@ -399,9 +394,6 @@ static void FET_BOT_Fall_Handler(void)
 // Temperature telemetry task ? prints duty cycle & junction temp over UART
 // -----------------------------------------------------------------------------
 
-// -----------------------------------------------------------------------------
-// Temperature telemetry task ? prints duty cycle & junction temp over UART
-// -----------------------------------------------------------------------------
 
 static void TempChannelService(temp_pwm_t* ch, const char* name)
 {
@@ -437,9 +429,9 @@ static void TempChannelService(temp_pwm_t* ch, const char* name)
         if (dq > 32767u) dq = 32767u;
         uint16_t duty_percent = (uint16_t)(((uint32_t)dq * 100u + 16384u) / 32768u);
         float tempC = temp_q15_to_celsius(dq);
-        printf("TEMP[%s] duty=%u%%  TJ=%.1f C", name, duty_percent, (double)tempC);
+        printf("TEMP[%s] duty=%u%%  TJ=%.1f C\r\n", name, duty_percent, (double)tempC);
     } else {
-        printf("TEMP[%s]: syncing...", name);
+        printf("TEMP[%s]: syncing...\r\n", name);
     }
 }
 
