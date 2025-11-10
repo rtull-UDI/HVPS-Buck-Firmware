@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/debug/CH512MP506_Controller.X.debug.elf">
+  <executable name="dist/default/production/CH512MP506_Controller.X.production.elf">
     <memory name="data">
       <units>bytes</units>
       <length>49152</length>
-      <used>580</used>
-      <free>48572</free>
+      <used>500</used>
+      <free>48652</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>539520</length>
-      <used>30084</used>
-      <free>509436</free>
+      <used>30087</used>
+      <free>509433</free>
     </memory>
   </executable>
 </project>

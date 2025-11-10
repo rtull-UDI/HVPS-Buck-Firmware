@@ -4,17 +4,10 @@ Tool Name:
   c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\RYANTU~1\\AppData\\Local\\Temp\\tmp0000c538.00 \
-  -TC:\\Users\\RYANTU~1\\AppData\\Local\\Temp\\tmp0000c538.01 \
-  -TC:\\Users\\RYANTU~1\\AppData\\Local\\Temp\\tmp0000c538.02 \
-  -TC:\\Users\\RYANTU~1\\AppData\\Local\\Temp\\tmp0000c538.03 \
-  -TC:\\Users\\RYANTU~1\\AppData\\Local\\Temp\\tmp0000c538.04 \
-  -TC:\\Users\\RYANTU~1\\AppData\\Local\\Temp\\tmp0000c538.05 \
-  -TC:\\Users\\RYANTU~1\\AppData\\Local\\Temp\\tmp0000c538.06 \
   -p33CH512MP506 \
   --mdfp=C:/Program Files/microchip/MPLABX/v6.20/packs/Microchip/dsPIC33CH-MP_DFP/1.15.378/xc16 \
   -o \
-  dist/default/debug/CH512MP506_Controller.X.debug.elf \
+  dist/default/production/CH512MP506_Controller.X.production.elf \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/.. \
   -LC:/Program Files/microchip/MPLABX/v6.20/packs/Microchip/dsPIC33CH-MP_DFP/1.15.378/xc16/bin/../lib \
   -LC:/Program Files/microchip/MPLABX/v6.20/packs/Microchip/dsPIC33CH-MP_DFP/1.15.378/xc16/bin/../support/dsPIC33C/gld \
@@ -26,33 +19,31 @@ Command:
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33C/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33F/gld \
-  build/default/debug/mcc_generated_files/adc/src/adc1.o \
-  build/default/debug/mcc_generated_files/input_capture/src/sccp4.o \
-  build/default/debug/mcc_generated_files/input_capture/src/sccp2.o \
-  build/default/debug/mcc_generated_files/input_capture/src/sccp3.o \
-  build/default/debug/mcc_generated_files/input_capture/src/sccp1.o \
-  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o \
-  build/default/debug/mcc_generated_files/system/src/dmt_asm.o \
-  build/default/debug/mcc_generated_files/system/src/dmt.o \
-  build/default/debug/mcc_generated_files/system/src/reset.o \
-  build/default/debug/mcc_generated_files/system/src/system.o \
-  build/default/debug/mcc_generated_files/system/src/clock.o \
-  build/default/debug/mcc_generated_files/system/src/pins.o \
-  build/default/debug/mcc_generated_files/system/src/interrupt.o \
-  build/default/debug/mcc_generated_files/system/src/where_was_i.o \
-  build/default/debug/mcc_generated_files/system/src/config_bits.o \
-  build/default/debug/mcc_generated_files/system/src/traps.o \
-  build/default/debug/mcc_generated_files/timer/src/delay.o \
-  build/default/debug/mcc_generated_files/timer/src/tmr1.o \
-  build/default/debug/mcc_generated_files/uart/src/uart1.o \
-  build/default/debug/main.o \
-  build/default/debug/VCOMP.o \
-  build/default/debug/VCOMP_asm.o \
+  build/default/production/mcc_generated_files/adc/src/adc1.o \
+  build/default/production/mcc_generated_files/input_capture/src/sccp4.o \
+  build/default/production/mcc_generated_files/input_capture/src/sccp2.o \
+  build/default/production/mcc_generated_files/input_capture/src/sccp3.o \
+  build/default/production/mcc_generated_files/input_capture/src/sccp1.o \
+  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o \
+  build/default/production/mcc_generated_files/system/src/dmt_asm.o \
+  build/default/production/mcc_generated_files/system/src/dmt.o \
+  build/default/production/mcc_generated_files/system/src/reset.o \
+  build/default/production/mcc_generated_files/system/src/system.o \
+  build/default/production/mcc_generated_files/system/src/clock.o \
+  build/default/production/mcc_generated_files/system/src/pins.o \
+  build/default/production/mcc_generated_files/system/src/interrupt.o \
+  build/default/production/mcc_generated_files/system/src/where_was_i.o \
+  build/default/production/mcc_generated_files/system/src/config_bits.o \
+  build/default/production/mcc_generated_files/system/src/traps.o \
+  build/default/production/mcc_generated_files/timer/src/delay.o \
+  build/default/production/mcc_generated_files/timer/src/tmr1.o \
+  build/default/production/mcc_generated_files/uart/src/uart1.o \
+  build/default/production/main.o \
+  build/default/production/VCOMP.o \
+  build/default/production/VCOMP_asm.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
-  --defsym=__MPLAB_DEBUG=1 \
-  --defsym=__DEBUG=1 \
-  -Tp33CH512MP506.gld.07 \
+  -Tp33CH512MP506.gld.00 \
   --stack=16 \
   --check-sections \
   --data-init \
@@ -64,10 +55,10 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/debug/CH512MP506_Controller.X.debug.map \
+  -Map=dist/default/production/CH512MP506_Controller.X.production.map \
   --report-mem \
   --memorysummary \
-  dist/default/debug/memoryfile.xml \
+  dist/default/production/memoryfile.xml \
   -start-group \
   --library=c99-pic30-elf \
   --library=m-elf \
@@ -85,17 +76,17 @@ c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normalch.Meo)
                               (__crt_start_mode_normal)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32ch.Meo)
-                              build/default/debug/mcc_generated_files/timer/src/delay.o (___delay32)
+                              build/default/production/mcc_generated_files/timer/src/delay.o (___delay32)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.CH_o)
-                              build/default/debug/main.o (___floatunsisf)
+                              build/default/production/main.o (___floatunsisf)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(udivsi3.CH_o)
-                              build/default/debug/mcc_generated_files/uart/src/uart1.o (___udivsi3)
+                              build/default/production/mcc_generated_files/uart/src/uart1.o (___udivsi3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.CH_o)
-                              build/default/debug/main.o (___addsf3)
+                              build/default/production/main.o (___addsf3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.CH_o)
-                              build/default/debug/main.o (___divsf3)
+                              build/default/production/main.o (___divsf3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.CH_o)
-                              build/default/debug/main.o (___mulsf3)
+                              build/default/production/main.o (___mulsf3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.CH_o)
                               c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.CH_o) (__dnrmpackf)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.CH_o)
@@ -109,9 +100,9 @@ c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spack
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.CH_o)
                               c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.CH_o) (__unpackf)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divmoddi3.CH_o)
-                              build/default/debug/main.o (___udivdi3)
+                              build/default/production/main.o (___udivdi3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(muldi3.CH_o)
-                              build/default/debug/main.o (___muldi3)
+                              build/default/production/main.o (___muldi3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.CH_o)
                               c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.CH_o) (_errno)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.CH_o)
@@ -121,11 +112,11 @@ c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(umuldi3.CH_o)
                               c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(muldi3.CH_o) (___umuldi3)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_dfouxL.CH_o)
-                              build/default/debug/main.o (__printf_cdfFnopuxXL)
+                              build/default/production/main.o (__printf_cdfFnopuxXL)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_douxL.CH_o)
-                              build/default/debug/main.o (__printf_cdnopuxXL)
+                              build/default/production/main.o (__printf_cdnopuxXL)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(puts.CH_o)
-                              build/default/debug/main.o (_puts)
+                              build/default/production/main.o (_puts)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.CH_o)
                               c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__sio_printf_dfouxL.CH_o) (__stdout)
 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_d.CH_o)
@@ -259,43 +250,36 @@ section                    address   length (PC units)   length (bytes) (dec)
 .const                      0x2c74               0x2fe           0x47d  (1149)
 .text                       0x2f72              0x1780          0x2340  (9024)
 .dinit                      0x46f2               0x110           0x198  (408)
-.text                       0x4802               0x80e           0xc15  (3093)
-.init.delay32               0x5010                0x1c            0x2a  (42)
-.text                       0x502c                0x2a            0x3f  (63)
-data_init_dualch.S.scn1     0x5056                 0x2             0x3  (3)
+.text                       0x4802               0x82a           0xc3f  (3135)
+.init.delay32               0x502c                0x1c            0x2a  (42)
+.text                       0x5048                0x10            0x18  (24)
+data_init_dualch.S.scn1     0x5058                 0x2             0x3  (3)
 
-                 Total "program" memory used (bytes):         0x7584  (30084) 5%
+                 Total "program" memory used (bytes):         0x7587  (30087) 5%
 
 
 "data" Memory  [Origin = 0x1000, Length = 0xc000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-reserve_data_0x1000         0x1000                0x1c            0x1c  (28)
-reserve_data_0x101c         0x101c                 0x2             0x2  (2)
-reserve_data_0x101e         0x101e                 0x2             0x2  (2)
-reserve_data_0x1020         0x1020                 0x2             0x2  (2)
-reserve_data_0x1022         0x1022                 0x2             0x2  (2)
-reserve_data_0x1024         0x1024                 0x4             0x4  (4)
-reserve_data_0x1028         0x1028                0x28            0x28  (40)
-.nbss                       0x1050                   0            0x40  (64)
-_00000000082C8D206911fec5    0x1090                   0            0x1c  (28)
-.ndata                      0x10ac                   0            0x18  (24)
-.nbss                       0x10c4                   0             0xe  (14)
-mcc_generated_files/system/src/where_was_i.s.scn1    0x10d2                   0             0x4  (4)
-.nbss                       0x10d6                   0             0xe  (14)
-.ndata                      0x10e4                   0             0x2  (2)
-.nbss                       0x10e6                   0             0x6  (6)
-.bss                        0x10ec                   0            0x88  (136)
-.data                       0x1174                   0            0x42  (66)
-.bss                        0x11b6                   0            0x20  (32)
-.data                       0x11d6                   0            0x3a  (58)
-.bss                        0x1210                   0            0x14  (20)
-.data                       0x1224                   0            0x10  (16)
-.bss                        0x1234                   0             0x2  (2)
+.nbss                       0x1000                   0            0x40  (64)
+_0000000008308D206911fecc    0x1040                   0            0x1c  (28)
+.ndata                      0x105c                   0            0x18  (24)
+.nbss                       0x1074                   0             0xe  (14)
+mcc_generated_files/system/src/where_was_i.s.scn1    0x1082                   0             0x4  (4)
+.nbss                       0x1086                   0             0xe  (14)
+.ndata                      0x1094                   0             0x2  (2)
+.nbss                       0x1096                   0             0x6  (6)
+.bss                        0x109c                   0            0x88  (136)
+.data                       0x1124                   0            0x42  (66)
+.bss                        0x1166                   0            0x20  (32)
+.data                       0x1186                   0            0x3a  (58)
+.bss                        0x11c0                   0            0x14  (20)
+.data                       0x11d4                   0            0x10  (16)
+.bss                        0x11e4                   0             0x2  (2)
 .ybss                       0x7ff2                   0             0xe  (14)
 
-                 Total "data" memory used (bytes):          0x244  (580) 1%
+                 Total "data" memory used (bytes):          0x1f4  (500) 1%
 
 
 Dynamic Memory Usage
@@ -303,68 +287,68 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x1236                              0x6dbc  (28092)
+stack                       0x11e6                              0x6e0c  (28172)
 
-                 Maximum dynamic memory (bytes):         0x6dbc  (28092)
+                 Maximum dynamic memory (bytes):         0x6e0c  (28172)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
 
-                    0x1090                  _VCOMP_coefficients
-                    0x10b8                  _VCOMP_ACoefficients_size
-                    0x10ba                  _VCOMP_BCoefficients_size
-                    0x10bc                  _VCOMP_ControlHistory_size
-                    0x10be                  _VCOMP_ErrorHistory_size
-                    0x10c0                  _VCOMP_pre_shift
-                    0x10c2                  _VCOMP_post_shift_A
-                    0x10c6                  _calibOffset
-                    0x10d2                  _trapSrcAddr
-                    0x10d6                  _VCOMP_post_shift_B
-                    0x10d8                  _VCOMP_post_scaler
-                    0x10ec                  _VCOMP
-                    0x1174                  __stdout
-                    0x1176                  ___stdout_used
-                    0x11f4                  _VCOMP_ACoefficients
-                    0x1200                  _VCOMP_BCoefficients
-                    0x1234                  ___errno_val
+                    0x1040                  _VCOMP_coefficients
+                    0x1068                  _VCOMP_ACoefficients_size
+                    0x106a                  _VCOMP_BCoefficients_size
+                    0x106c                  _VCOMP_ControlHistory_size
+                    0x106e                  _VCOMP_ErrorHistory_size
+                    0x1070                  _VCOMP_pre_shift
+                    0x1072                  _VCOMP_post_shift_A
+                    0x1076                  _calibOffset
+                    0x1082                  _trapSrcAddr
+                    0x1086                  _VCOMP_post_shift_B
+                    0x1088                  _VCOMP_post_scaler
+                    0x109c                  _VCOMP
+                    0x1124                  __stdout
+                    0x1126                  ___stdout_used
+                    0x11a4                  _VCOMP_ACoefficients
+                    0x11b0                  _VCOMP_BCoefficients
+                    0x11e4                  ___errno_val
                     0x7ff2                  _VCOMP_histories
 
 External Symbols in Data Memory (by name):
 
-                    0x10ec                  _VCOMP
-                    0x11f4                  _VCOMP_ACoefficients
-                    0x10b8                  _VCOMP_ACoefficients_size
-                    0x1200                  _VCOMP_BCoefficients
-                    0x10ba                  _VCOMP_BCoefficients_size
-                    0x10bc                  _VCOMP_ControlHistory_size
-                    0x10be                  _VCOMP_ErrorHistory_size
-                    0x1090                  _VCOMP_coefficients
+                    0x109c                  _VCOMP
+                    0x11a4                  _VCOMP_ACoefficients
+                    0x1068                  _VCOMP_ACoefficients_size
+                    0x11b0                  _VCOMP_BCoefficients
+                    0x106a                  _VCOMP_BCoefficients_size
+                    0x106c                  _VCOMP_ControlHistory_size
+                    0x106e                  _VCOMP_ErrorHistory_size
+                    0x1040                  _VCOMP_coefficients
                     0x7ff2                  _VCOMP_histories
-                    0x10d8                  _VCOMP_post_scaler
-                    0x10c2                  _VCOMP_post_shift_A
-                    0x10d6                  _VCOMP_post_shift_B
-                    0x10c0                  _VCOMP_pre_shift
-                    0x1234                  ___errno_val
-                    0x1176                  ___stdout_used
-                    0x1174                  __stdout
-                    0x10c6                  _calibOffset
-                    0x10d2                  _trapSrcAddr
+                    0x1088                  _VCOMP_post_scaler
+                    0x1072                  _VCOMP_post_shift_A
+                    0x1086                  _VCOMP_post_shift_B
+                    0x1070                  _VCOMP_pre_shift
+                    0x11e4                  ___errno_val
+                    0x1126                  ___stdout_used
+                    0x1124                  __stdout
+                    0x1076                  _calibOffset
+                    0x1082                  _trapSrcAddr
 
 External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023a                  __psv_init
-                  0x000246                  __data_init
                   0x000246                  __data_init_duo
+                  0x000246                  __data_init
                   0x0002f8                  __wipe_secondary
                   0x00032e                  __program_inactive_slave
                   0x00032e                  __program_inactive_secondary
                   0x000332                  __program_secondary
                   0x000332                  __program_slave
-                  0x00037e                  __start_slave
                   0x00037e                  __start_secondary
+                  0x00037e                  __start_slave
                   0x00038a                  __stop_slave
                   0x00038a                  __stop_secondary
                   0x0006d4                  __CCP2Interrupt
@@ -375,15 +359,15 @@ External Symbols in Program Memory (by address):
                   0x000888                  _write
                   0x0008c4                  ___floatunsisf
                   0x0008c8                  ___udivsi3
-                  0x0008e8                  ___subsf3
                   0x0008e8                  ___subsf3x
-                  0x0008fa                  ___addsf3
+                  0x0008e8                  ___subsf3
                   0x0008fa                  ___addsf3x
+                  0x0008fa                  ___addsf3
                   0x000ac4                  ___divsf3x
                   0x000ac4                  ___divsf3
                   0x000c56                  __sdivf
-                  0x000c82                  ___mulsf3x
                   0x000c82                  ___mulsf3
+                  0x000c82                  ___mulsf3x
                   0x000d8e                  __dnrmpackf
                   0x000de2                  __unpackdnrmf
                   0x000e40                  __typef
@@ -437,16 +421,16 @@ External Symbols in Program Memory (by address):
                   0x0023ec                  ___pop_int
                   0x002494                  ___pop_ptr
                   0x002504                  ___stpcpy
+                  0x002548                  ___ledf2
                   0x002548                  ___ltdf2
                   0x002548                  ___eqdf2
-                  0x002548                  ___ledf2
-                  0x002552                  ___gedf2
                   0x002552                  ___gtdf2
+                  0x002552                  ___gedf2
                   0x00255c                  ___extendsfdf2
                   0x00259a                  ___fixdfsi
                   0x0025f2                  __funpack
-                  0x00261c                  ___mulsi3
                   0x00261c                  ___mulp32peds3
+                  0x00261c                  ___mulsi3
                   0x00261c                  ___mulp32eds3
                   0x002628                  ___subdf3
                   0x002634                  ___adddf3
@@ -475,69 +459,69 @@ External Symbols in Program Memory (by address):
                   0x002f36                  _FET_TEMP_BOT_RISING
                   0x002f4a                  _FET_TEMP_TOP_RISING
                   0x002f5e                  _Timer1
-                  0x002f72                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEnable
-                  0x002f88                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorDisable
-                  0x002f9e                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_ModeSet
-                  0x002fe0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Enable
-                  0x002fe8                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Disable
-                  0x002ff0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPeriodSet
-                  0x002ffc                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterDutyCycleSet
-                  0x003008                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPhaseSet
-                  0x003014                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PeriodSet
-                  0x00302e                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DutyCycleSet
-                  0x003048                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSelect
-                  0x003072                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSet
-                  0x00308c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataSet
-                  0x0030b8                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataHighSet
-                  0x0030f2                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataLowSet
-                  0x003126                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataGet
-                  0x003148                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighEnable
-                  0x00315e                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowEnable
-                  0x003174                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighDisable
-                  0x00318a                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowDisable
-                  0x0031a0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeLowSet
-                  0x0031ba                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeHighSet
-                  0x0031d4                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeSet
-                  0x0031f2                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCompareValueSet
-                  0x00320c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptEnable
-                  0x00324c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptDisable
-                  0x00328c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusClear
-                  0x0032cc                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusGet
-                  0x003352                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdateRequest
-                  0x003368                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdatePending
-                  0x003392                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerACompareValueSet
-                  0x0033ac                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerBCompareValueSet
-                  0x0033c6                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCCompareValueSet
-                  0x0033e0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Enable
-                  0x003412                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Disable
-                  0x003444                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Enable
-                  0x003476                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Disable
-                  0x0034a8                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_FaultModeLatchClear
+                  0x002f72                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEnable
+                  0x002f88                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorDisable
+                  0x002f9e                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_ModeSet
+                  0x002fe0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Enable
+                  0x002fe8                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Disable
+                  0x002ff0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPeriodSet
+                  0x002ffc                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterDutyCycleSet
+                  0x003008                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPhaseSet
+                  0x003014                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PeriodSet
+                  0x00302e                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DutyCycleSet
+                  0x003048                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSelect
+                  0x003072                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSet
+                  0x00308c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataSet
+                  0x0030b8                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataHighSet
+                  0x0030f2                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataLowSet
+                  0x003126                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataGet
+                  0x003148                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighEnable
+                  0x00315e                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowEnable
+                  0x003174                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighDisable
+                  0x00318a                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowDisable
+                  0x0031a0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeLowSet
+                  0x0031ba                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeHighSet
+                  0x0031d4                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeSet
+                  0x0031f2                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCompareValueSet
+                  0x00320c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptEnable
+                  0x00324c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptDisable
+                  0x00328c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusClear
+                  0x0032cc                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusGet
+                  0x003352                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdateRequest
+                  0x003368                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdatePending
+                  0x003392                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerACompareValueSet
+                  0x0033ac                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerBCompareValueSet
+                  0x0033c6                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCCompareValueSet
+                  0x0033e0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Enable
+                  0x003412                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Disable
+                  0x003444                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Enable
+                  0x003476                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Disable
+                  0x0034a8                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_FaultModeLatchClear
                   0x0034be                  _PWM_Initialize
                   0x003540                  _PWM_Deinitialize
                   0x0035a8                  _PWM_GeneratorEOCEventCallbackRegister
                   0x0035c2                  _PWM_GeneratorTasks
-                  0x003628                  build/default/debug/main.o:_TMR1_INT
-                  0x00370e                  build/default/debug/main.o:_AN1_INT
-                  0x0039da                  build/default/debug/main.o:_FET_TOP_Rise_Handler
-                  0x003a0e                  build/default/debug/main.o:_FET_TOP_Fall_Handler
+                  0x003628                  build/default/production/main.o:_TMR1_INT
+                  0x00370e                  build/default/production/main.o:_AN1_INT
+                  0x0039da                  build/default/production/main.o:_FET_TOP_Rise_Handler
+                  0x003a0e                  build/default/production/main.o:_FET_TOP_Fall_Handler
                   0x003be8                  _main
-                  0x003c48                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_Enable
-                  0x003c50                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_Disable
-                  0x003c58                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerEnable
-                  0x003c60                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerDisable
-                  0x003c68                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_ChannelSelect
-                  0x003c70                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_ConversionResultGet
-                  0x003c96                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IsConversionComplete
-                  0x003cd8                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_ResolutionSet
-                  0x003cf6                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptEnable
-                  0x003cfe                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptDisable
-                  0x003d06                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptFlagClear
-                  0x003d0e                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptPrioritySet
-                  0x003d30                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptEnable
-                  0x003d50                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptDisable
-                  0x003d70                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptFlagClear
-                  0x003d8c                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptPrioritySet
+                  0x003c48                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_Enable
+                  0x003c50                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_Disable
+                  0x003c58                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerEnable
+                  0x003c60                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerDisable
+                  0x003c68                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_ChannelSelect
+                  0x003c70                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_ConversionResultGet
+                  0x003c96                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IsConversionComplete
+                  0x003cd8                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_ResolutionSet
+                  0x003cf6                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptEnable
+                  0x003cfe                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptDisable
+                  0x003d06                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptFlagClear
+                  0x003d0e                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptPrioritySet
+                  0x003d30                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptEnable
+                  0x003d50                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptDisable
+                  0x003d70                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptFlagClear
+                  0x003d8c                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptPrioritySet
                   0x003dd0                  _ADC1_Initialize
                   0x003ea8                  _ADC1_Deinitialize
                   0x003f60                  _ADC1_SharedCorePowerEnable
@@ -614,8 +598,8 @@ External Symbols in Program Memory (by address):
                   0x004c62                  _SCCP1_InputCapture_HasBufferOverflowed
                   0x004c7a                  _SCCP1_InputCapture_IsBufferEmpty
                   0x004c8e                  _SCCP1_InputCapture_OverflowFlagClear
-                  0x004c96                  build/default/debug/mcc_generated_files/timer/src/tmr1.o:_TMR1_PeriodGet
-                  0x004ca0                  build/default/debug/mcc_generated_files/timer/src/tmr1.o:_TMR1_CounterGet
+                  0x004c96                  build/default/production/mcc_generated_files/timer/src/tmr1.o:_TMR1_PeriodGet
+                  0x004ca0                  build/default/production/mcc_generated_files/timer/src/tmr1.o:_TMR1_CounterGet
                   0x004caa                  _TMR1_Initialize
                   0x004cc0                  _TMR1_Deinitialize
                   0x004cd0                  _TMR1_Start
@@ -637,8 +621,8 @@ External Symbols in Program Memory (by address):
                   0x004fb2                  _DMT_CalibratedCounterGet
                   0x004fc6                  _DMT_Calibrate
                   0x004ff0                  _SYSTEM_Initialize
-                  0x005010                  ___delay32
-                  0x005046                  _where_was_i
+                  0x00502c                  ___delay32
+                  0x005048                  _where_was_i
                   0x057f00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
@@ -762,7 +746,7 @@ External Symbols in Program Memory (by name):
                   0x0008fa                  ___addsf3
                   0x0008fa                  ___addsf3x
                   0x001a4e                  ___cvt_u
-                  0x005010                  ___delay32
+                  0x00502c                  ___delay32
                   0x0026ca                  ___divdf3
                   0x0010da                  ___divdi3
                   0x000ac4                  ___divsf3
@@ -867,68 +851,68 @@ External Symbols in Program Memory (by name):
                   0x002346                  _strlen
                   0x00238a                  _tolower
                   0x002398                  _toupper
-                  0x005046                  _where_was_i
+                  0x005048                  _where_was_i
                   0x000888                  _write
-                  0x00370e                  build/default/debug/main.o:_AN1_INT
-                  0x003a0e                  build/default/debug/main.o:_FET_TOP_Fall_Handler
-                  0x0039da                  build/default/debug/main.o:_FET_TOP_Rise_Handler
-                  0x003628                  build/default/debug/main.o:_TMR1_INT
-                  0x003c68                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_ChannelSelect
-                  0x003c70                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_ConversionResultGet
-                  0x003c50                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_Disable
-                  0x003c48                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_Enable
-                  0x003d50                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptDisable
-                  0x003d30                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptEnable
-                  0x003d70                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptFlagClear
-                  0x003d8c                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptPrioritySet
-                  0x003cfe                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptDisable
-                  0x003cf6                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptEnable
-                  0x003d06                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptFlagClear
-                  0x003d0e                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptPrioritySet
-                  0x003c96                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IsConversionComplete
-                  0x003cd8                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_ResolutionSet
-                  0x003c60                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerDisable
-                  0x003c58                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerEnable
-                  0x0031ba                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeHighSet
-                  0x0031a0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeLowSet
-                  0x0031d4                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeSet
-                  0x002fe8                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Disable
-                  0x00302e                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DutyCycleSet
-                  0x002fe0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Enable
-                  0x0034a8                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_FaultModeLatchClear
-                  0x002f88                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorDisable
-                  0x002f72                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEnable
-                  0x00328c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusClear
-                  0x0032cc                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusGet
-                  0x00324c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptDisable
-                  0x00320c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptEnable
-                  0x002ffc                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterDutyCycleSet
-                  0x002ff0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPeriodSet
-                  0x003008                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPhaseSet
-                  0x002f9e                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_ModeSet
-                  0x003126                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataGet
-                  0x0030b8                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataHighSet
-                  0x0030f2                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataLowSet
-                  0x00308c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataSet
-                  0x003174                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighDisable
-                  0x003148                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighEnable
-                  0x00318a                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowDisable
-                  0x00315e                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowEnable
-                  0x003014                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PeriodSet
-                  0x003048                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSelect
-                  0x003072                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSet
-                  0x003368                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdatePending
-                  0x003352                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdateRequest
-                  0x003412                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Disable
-                  0x0033e0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Enable
-                  0x003476                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Disable
-                  0x003444                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Enable
-                  0x003392                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerACompareValueSet
-                  0x0033ac                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerBCompareValueSet
-                  0x0033c6                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCCompareValueSet
-                  0x0031f2                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCompareValueSet
-                  0x004ca0                  build/default/debug/mcc_generated_files/timer/src/tmr1.o:_TMR1_CounterGet
-                  0x004c96                  build/default/debug/mcc_generated_files/timer/src/tmr1.o:_TMR1_PeriodGet
+                  0x00370e                  build/default/production/main.o:_AN1_INT
+                  0x003a0e                  build/default/production/main.o:_FET_TOP_Fall_Handler
+                  0x0039da                  build/default/production/main.o:_FET_TOP_Rise_Handler
+                  0x003628                  build/default/production/main.o:_TMR1_INT
+                  0x003c68                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_ChannelSelect
+                  0x003c70                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_ConversionResultGet
+                  0x003c50                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_Disable
+                  0x003c48                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_Enable
+                  0x003d50                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptDisable
+                  0x003d30                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptEnable
+                  0x003d70                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptFlagClear
+                  0x003d8c                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptPrioritySet
+                  0x003cfe                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptDisable
+                  0x003cf6                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptEnable
+                  0x003d06                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptFlagClear
+                  0x003d0e                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptPrioritySet
+                  0x003c96                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IsConversionComplete
+                  0x003cd8                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_ResolutionSet
+                  0x003c60                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerDisable
+                  0x003c58                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerEnable
+                  0x0031ba                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeHighSet
+                  0x0031a0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeLowSet
+                  0x0031d4                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeSet
+                  0x002fe8                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Disable
+                  0x00302e                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DutyCycleSet
+                  0x002fe0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Enable
+                  0x0034a8                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_FaultModeLatchClear
+                  0x002f88                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorDisable
+                  0x002f72                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEnable
+                  0x00328c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusClear
+                  0x0032cc                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusGet
+                  0x00324c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptDisable
+                  0x00320c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptEnable
+                  0x002ffc                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterDutyCycleSet
+                  0x002ff0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPeriodSet
+                  0x003008                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPhaseSet
+                  0x002f9e                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_ModeSet
+                  0x003126                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataGet
+                  0x0030b8                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataHighSet
+                  0x0030f2                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataLowSet
+                  0x00308c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataSet
+                  0x003174                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighDisable
+                  0x003148                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighEnable
+                  0x00318a                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowDisable
+                  0x00315e                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowEnable
+                  0x003014                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PeriodSet
+                  0x003048                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSelect
+                  0x003072                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSet
+                  0x003368                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdatePending
+                  0x003352                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdateRequest
+                  0x003412                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Disable
+                  0x0033e0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Enable
+                  0x003476                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Disable
+                  0x003444                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Enable
+                  0x003392                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerACompareValueSet
+                  0x0033ac                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerBCompareValueSet
+                  0x0033c6                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCCompareValueSet
+                  0x0031f2                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCompareValueSet
+                  0x004ca0                  build/default/production/mcc_generated_files/timer/src/tmr1.o:_TMR1_CounterGet
+                  0x004c96                  build/default/production/mcc_generated_files/timer/src/tmr1.o:_TMR1_PeriodGet
 
 Memory Configuration
 
@@ -979,66 +963,29 @@ FBTSEQ           0x057ffc           0x000002
 
 Linker script and memory map
 
-
-reserve_data_0x1000
-                    0x1000         0x1c
-                    0x101c                  . = 0x1c
- *fill*             0x1000         0x1c00
-
-reserve_data_0x101c
-                    0x101c          0x2
-                    0x101e                  . = 0x2
- *fill*             0x101c          0x200
-
-reserve_data_0x101e
-                    0x101e          0x2
-                    0x1020                  . = 0x2
- *fill*             0x101e          0x200
-
-reserve_data_0x1020
-                    0x1020          0x2
-                    0x1022                  . = 0x2
- *fill*             0x1020          0x200
-
-reserve_data_0x1022
-                    0x1022          0x2
-                    0x1024                  . = 0x2
- *fill*             0x1022          0x200
-
-reserve_data_0x1024
-                    0x1024          0x4
-                    0x1028                  . = 0x4
- *fill*             0x1024          0x400
-
-reserve_data_0x1028
-                    0x1028         0x28
-                    0x1050                  . = 0x28
- *fill*             0x1028         0x2800
-LOAD build/default/debug/mcc_generated_files/adc/src/adc1.o
-LOAD build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
-LOAD build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
-LOAD build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
-LOAD build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
-LOAD build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
-LOAD build/default/debug/mcc_generated_files/system/src/dmt_asm.o
-LOAD build/default/debug/mcc_generated_files/system/src/dmt.o
-LOAD build/default/debug/mcc_generated_files/system/src/reset.o
-LOAD build/default/debug/mcc_generated_files/system/src/system.o
-LOAD build/default/debug/mcc_generated_files/system/src/clock.o
-LOAD build/default/debug/mcc_generated_files/system/src/pins.o
-LOAD build/default/debug/mcc_generated_files/system/src/interrupt.o
-LOAD build/default/debug/mcc_generated_files/system/src/where_was_i.o
-LOAD build/default/debug/mcc_generated_files/system/src/config_bits.o
-LOAD build/default/debug/mcc_generated_files/system/src/traps.o
-LOAD build/default/debug/mcc_generated_files/timer/src/delay.o
-LOAD build/default/debug/mcc_generated_files/timer/src/tmr1.o
-LOAD build/default/debug/mcc_generated_files/uart/src/uart1.o
-LOAD build/default/debug/main.o
-LOAD build/default/debug/VCOMP.o
-LOAD build/default/debug/VCOMP_asm.o
+LOAD build/default/production/mcc_generated_files/adc/src/adc1.o
+LOAD build/default/production/mcc_generated_files/input_capture/src/sccp4.o
+LOAD build/default/production/mcc_generated_files/input_capture/src/sccp2.o
+LOAD build/default/production/mcc_generated_files/input_capture/src/sccp3.o
+LOAD build/default/production/mcc_generated_files/input_capture/src/sccp1.o
+LOAD build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
+LOAD build/default/production/mcc_generated_files/system/src/dmt_asm.o
+LOAD build/default/production/mcc_generated_files/system/src/dmt.o
+LOAD build/default/production/mcc_generated_files/system/src/reset.o
+LOAD build/default/production/mcc_generated_files/system/src/system.o
+LOAD build/default/production/mcc_generated_files/system/src/clock.o
+LOAD build/default/production/mcc_generated_files/system/src/pins.o
+LOAD build/default/production/mcc_generated_files/system/src/interrupt.o
+LOAD build/default/production/mcc_generated_files/system/src/where_was_i.o
+LOAD build/default/production/mcc_generated_files/system/src/config_bits.o
+LOAD build/default/production/mcc_generated_files/system/src/traps.o
+LOAD build/default/production/mcc_generated_files/timer/src/delay.o
+LOAD build/default/production/mcc_generated_files/timer/src/tmr1.o
+LOAD build/default/production/mcc_generated_files/uart/src/uart1.o
+LOAD build/default/production/main.o
+LOAD build/default/production/VCOMP.o
+LOAD build/default/production/VCOMP_asm.o
                     0x0001                  __MPLAB_BUILD = 0x1
-                    0x0001                  __MPLAB_DEBUG = 0x1
-                    0x0001                  __DEBUG = 0x1
 LOAD p33CH512MP506
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                     0x801044                  _iwri1 = 0x801044
@@ -1116,24 +1063,24 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.handle)
  .handle          0x000396        0x250 jump_table
  *(.isr*)
- .isr.text        0x0005e6         0xee build/default/debug/mcc_generated_files/adc/src/adc1.o
+ .isr.text        0x0005e6         0xee build/default/production/mcc_generated_files/adc/src/adc1.o
                   0x0005e6                  __ADCInterrupt
                   0x000658                  __ADCAN0Interrupt
                   0x000696                  __ADCAN1Interrupt
- .isr.text        0x0006d4         0x26 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
+ .isr.text        0x0006d4         0x26 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
                   0x0006d4                  __CCP2Interrupt
- .isr.text        0x0006fa         0x26 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
+ .isr.text        0x0006fa         0x26 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
                   0x0006fa                  __CCP1Interrupt
- .isr.text        0x000720         0x26 build/default/debug/mcc_generated_files/system/src/dmt.o
+ .isr.text        0x000720         0x26 build/default/production/mcc_generated_files/system/src/dmt.o
                   0x000720                  __DMTInterrupt
- .isr.text        0x000746        0x10c build/default/debug/mcc_generated_files/system/src/traps.o
+ .isr.text        0x000746        0x10c build/default/production/mcc_generated_files/system/src/traps.o
                   0x000746                  __AddressError
                   0x000766                  __HardTrapError
                   0x000786                  __SoftTrapError
                   0x0007f0                  __OscillatorFail
                   0x000810                  __MathError
                   0x000830                  __StackError
- .isr.text        0x000852         0x20 build/default/debug/mcc_generated_files/timer/src/tmr1.o
+ .isr.text        0x000852         0x20 build/default/production/mcc_generated_files/timer/src/tmr1.o
                   0x000852                  __T1Interrupt
  .isr             0x000872          0x4 default_isr
                   0x000872                  __DefaultInterrupt
@@ -1143,7 +1090,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.libm)
  *(.libdsp)
  *(.lib*)
- .libc.write      0x000888         0x3a build/default/debug/mcc_generated_files/uart/src/uart1.o
+ .libc.write      0x000888         0x3a build/default/production/mcc_generated_files/uart/src/uart1.o
                   0x000888                  _write
  .libpic30_crt_start_mode
                   0x0008c2          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normalch.Meo)
@@ -1550,27 +1497,27 @@ __FBTSEQ
 
 .debug_info       0x000000      0x13520
  *(.debug_info)
- .debug_info      0x000000       0x2b11 build/default/debug/mcc_generated_files/adc/src/adc1.o
- .debug_info      0x002b11        0xc43 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
- .debug_info      0x003754        0xe02 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
- .debug_info      0x004556        0xc42 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
- .debug_info      0x005198        0xdd3 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
- .debug_info      0x005f6b       0x263a build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
- .debug_info      0x0085a5         0xb3 build/default/debug/mcc_generated_files/system/src/dmt_asm.o
- .debug_info      0x008658        0xa73 build/default/debug/mcc_generated_files/system/src/dmt.o
- .debug_info      0x0090cb        0x4b0 build/default/debug/mcc_generated_files/system/src/reset.o
- .debug_info      0x00957b       0x1868 build/default/debug/mcc_generated_files/system/src/system.o
- .debug_info      0x00ade3        0x6cf build/default/debug/mcc_generated_files/system/src/clock.o
- .debug_info      0x00b4b2        0x6d9 build/default/debug/mcc_generated_files/system/src/pins.o
- .debug_info      0x00bb8b        0x72c build/default/debug/mcc_generated_files/system/src/interrupt.o
- .debug_info      0x00c2b7         0xb7 build/default/debug/mcc_generated_files/system/src/where_was_i.o
- .debug_info      0x00c36e        0x680 build/default/debug/mcc_generated_files/system/src/traps.o
- .debug_info      0x00c9ee        0x1fd build/default/debug/mcc_generated_files/timer/src/delay.o
- .debug_info      0x00cbeb        0xad1 build/default/debug/mcc_generated_files/timer/src/tmr1.o
- .debug_info      0x00d6bc       0x1257 build/default/debug/mcc_generated_files/uart/src/uart1.o
- .debug_info      0x00e913       0x29c7 build/default/debug/main.o
- .debug_info      0x0112da       0x10a0 build/default/debug/VCOMP.o
- .debug_info      0x01237a         0x96 build/default/debug/VCOMP_asm.o
+ .debug_info      0x000000       0x2b11 build/default/production/mcc_generated_files/adc/src/adc1.o
+ .debug_info      0x002b11        0xc43 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
+ .debug_info      0x003754        0xe02 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
+ .debug_info      0x004556        0xc42 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
+ .debug_info      0x005198        0xdd3 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
+ .debug_info      0x005f6b       0x263a build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
+ .debug_info      0x0085a5         0xb3 build/default/production/mcc_generated_files/system/src/dmt_asm.o
+ .debug_info      0x008658        0xa73 build/default/production/mcc_generated_files/system/src/dmt.o
+ .debug_info      0x0090cb        0x4b0 build/default/production/mcc_generated_files/system/src/reset.o
+ .debug_info      0x00957b       0x1868 build/default/production/mcc_generated_files/system/src/system.o
+ .debug_info      0x00ade3        0x6cf build/default/production/mcc_generated_files/system/src/clock.o
+ .debug_info      0x00b4b2        0x6d9 build/default/production/mcc_generated_files/system/src/pins.o
+ .debug_info      0x00bb8b        0x72c build/default/production/mcc_generated_files/system/src/interrupt.o
+ .debug_info      0x00c2b7         0xb7 build/default/production/mcc_generated_files/system/src/where_was_i.o
+ .debug_info      0x00c36e        0x680 build/default/production/mcc_generated_files/system/src/traps.o
+ .debug_info      0x00c9ee        0x1fd build/default/production/mcc_generated_files/timer/src/delay.o
+ .debug_info      0x00cbeb        0xad1 build/default/production/mcc_generated_files/timer/src/tmr1.o
+ .debug_info      0x00d6bc       0x1257 build/default/production/mcc_generated_files/uart/src/uart1.o
+ .debug_info      0x00e913       0x29c7 build/default/production/main.o
+ .debug_info      0x0112da       0x10a0 build/default/production/VCOMP.o
+ .debug_info      0x01237a         0x96 build/default/production/VCOMP_asm.o
  .debug_info      0x012410         0x91 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.CH_o)
  .debug_info      0x0124a1         0x8d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(udivsi3.CH_o)
  .debug_info      0x01252e         0x9d c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.CH_o)
@@ -1604,28 +1551,28 @@ __FBTSEQ
 
 .debug_abbrev     0x000000       0x1afb
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x273 build/default/debug/mcc_generated_files/adc/src/adc1.o
- .debug_abbrev    0x000273        0x189 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
- .debug_abbrev    0x0003fc        0x189 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
- .debug_abbrev    0x000585        0x189 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
- .debug_abbrev    0x00070e        0x189 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
- .debug_abbrev    0x000897        0x1b5 build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
- .debug_abbrev    0x000a4c         0x14 build/default/debug/mcc_generated_files/system/src/dmt_asm.o
- .debug_abbrev    0x000a60        0x15e build/default/debug/mcc_generated_files/system/src/dmt.o
- .debug_abbrev    0x000bbe         0xf8 build/default/debug/mcc_generated_files/system/src/reset.o
- .debug_abbrev    0x000cb6         0xe9 build/default/debug/mcc_generated_files/system/src/system.o
- .debug_abbrev    0x000d9f         0xdc build/default/debug/mcc_generated_files/system/src/clock.o
- .debug_abbrev    0x000e7b         0x9b build/default/debug/mcc_generated_files/system/src/pins.o
- .debug_abbrev    0x000f16         0xb4 build/default/debug/mcc_generated_files/system/src/interrupt.o
- .debug_abbrev    0x000fca         0x14 build/default/debug/mcc_generated_files/system/src/where_was_i.o
- .debug_abbrev    0x000fde          0x1 build/default/debug/mcc_generated_files/system/src/config_bits.o
- .debug_abbrev    0x000fdf        0x10f build/default/debug/mcc_generated_files/system/src/traps.o
- .debug_abbrev    0x0010ee         0x67 build/default/debug/mcc_generated_files/timer/src/delay.o
- .debug_abbrev    0x001155        0x15c build/default/debug/mcc_generated_files/timer/src/tmr1.o
- .debug_abbrev    0x0012b1        0x248 build/default/debug/mcc_generated_files/uart/src/uart1.o
- .debug_abbrev    0x0014f9        0x248 build/default/debug/main.o
- .debug_abbrev    0x001741        0x162 build/default/debug/VCOMP.o
- .debug_abbrev    0x0018a3         0x14 build/default/debug/VCOMP_asm.o
+ .debug_abbrev    0x000000        0x273 build/default/production/mcc_generated_files/adc/src/adc1.o
+ .debug_abbrev    0x000273        0x189 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
+ .debug_abbrev    0x0003fc        0x189 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
+ .debug_abbrev    0x000585        0x189 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
+ .debug_abbrev    0x00070e        0x189 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
+ .debug_abbrev    0x000897        0x1b5 build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
+ .debug_abbrev    0x000a4c         0x14 build/default/production/mcc_generated_files/system/src/dmt_asm.o
+ .debug_abbrev    0x000a60        0x15e build/default/production/mcc_generated_files/system/src/dmt.o
+ .debug_abbrev    0x000bbe         0xf8 build/default/production/mcc_generated_files/system/src/reset.o
+ .debug_abbrev    0x000cb6         0xe9 build/default/production/mcc_generated_files/system/src/system.o
+ .debug_abbrev    0x000d9f         0xdc build/default/production/mcc_generated_files/system/src/clock.o
+ .debug_abbrev    0x000e7b         0x9b build/default/production/mcc_generated_files/system/src/pins.o
+ .debug_abbrev    0x000f16         0xb4 build/default/production/mcc_generated_files/system/src/interrupt.o
+ .debug_abbrev    0x000fca         0x14 build/default/production/mcc_generated_files/system/src/where_was_i.o
+ .debug_abbrev    0x000fde          0x1 build/default/production/mcc_generated_files/system/src/config_bits.o
+ .debug_abbrev    0x000fdf        0x10f build/default/production/mcc_generated_files/system/src/traps.o
+ .debug_abbrev    0x0010ee         0x67 build/default/production/mcc_generated_files/timer/src/delay.o
+ .debug_abbrev    0x001155        0x15c build/default/production/mcc_generated_files/timer/src/tmr1.o
+ .debug_abbrev    0x0012b1        0x248 build/default/production/mcc_generated_files/uart/src/uart1.o
+ .debug_abbrev    0x0014f9        0x248 build/default/production/main.o
+ .debug_abbrev    0x001741        0x162 build/default/production/VCOMP.o
+ .debug_abbrev    0x0018a3         0x14 build/default/production/VCOMP_asm.o
  .debug_abbrev    0x0018b7         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.CH_o)
  .debug_abbrev    0x0018cb         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(udivsi3.CH_o)
  .debug_abbrev    0x0018df         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.CH_o)
@@ -1656,101 +1603,101 @@ __FBTSEQ
  .debug_abbrev    0x001ad3         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dunpack2.CH_o)
  .debug_abbrev    0x001ae7         0x14 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpropagateNaN.CH_o)
 
-.debug_line       0x000000       0x3043
+.debug_line       0x000000       0x3044
  *(.debug_line)
- .debug_line      0x000000        0x3b4 build/default/debug/mcc_generated_files/adc/src/adc1.o
- .debug_line      0x0003b4        0x1b8 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
- .debug_line      0x00056c        0x1d0 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
- .debug_line      0x00073c        0x1b8 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
- .debug_line      0x0008f4        0x1d0 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
- .debug_line      0x000ac4        0x386 build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
- .debug_line      0x000e4a         0x6f build/default/debug/mcc_generated_files/system/src/dmt_asm.o
- .debug_line      0x000eb9        0x1ad build/default/debug/mcc_generated_files/system/src/dmt.o
- .debug_line      0x001066        0x194 build/default/debug/mcc_generated_files/system/src/reset.o
- .debug_line      0x0011fa        0x16e build/default/debug/mcc_generated_files/system/src/system.o
- .debug_line      0x001368        0x144 build/default/debug/mcc_generated_files/system/src/clock.o
- .debug_line      0x0014ac        0x145 build/default/debug/mcc_generated_files/system/src/pins.o
- .debug_line      0x0015f1        0x139 build/default/debug/mcc_generated_files/system/src/interrupt.o
- .debug_line      0x00172a         0x60 build/default/debug/mcc_generated_files/system/src/where_was_i.o
- .debug_line      0x00178a         0x1a build/default/debug/mcc_generated_files/system/src/config_bits.o
- .debug_line      0x0017a4        0x196 build/default/debug/mcc_generated_files/system/src/traps.o
- .debug_line      0x00193a         0xb0 build/default/debug/mcc_generated_files/timer/src/delay.o
- .debug_line      0x0019ea        0x1ee build/default/debug/mcc_generated_files/timer/src/tmr1.o
- .debug_line      0x001bd8        0x1f3 build/default/debug/mcc_generated_files/uart/src/uart1.o
- .debug_line      0x001dcb        0x29e build/default/debug/main.o
- .debug_line      0x002069        0x112 build/default/debug/VCOMP.o
- .debug_line      0x00217b         0x8b build/default/debug/VCOMP_asm.o
- .debug_line      0x002206         0x3b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.CH_o)
- .debug_line      0x002241         0x45 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(udivsi3.CH_o)
- .debug_line      0x002286        0x136 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.CH_o)
- .debug_line      0x0023bc        0x124 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.CH_o)
- .debug_line      0x0024e0         0xcc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.CH_o)
- .debug_line      0x0025ac         0x72 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.CH_o)
- .debug_line      0x00261e         0x7a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.CH_o)
- .debug_line      0x002698         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.CH_o)
- .debug_line      0x0026f6         0x51 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.CH_o)
- .debug_line      0x002747         0x98 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.CH_o)
- .debug_line      0x0027df         0x79 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.CH_o)
- .debug_line      0x002858         0x1a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.CH_o)
- .debug_line      0x002872         0x6c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.CH_o)
- .debug_line      0x0028de         0x5a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.CH_o)
- .debug_line      0x002938         0x57 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(umuldi3.CH_o)
- .debug_line      0x00298f         0x3a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(deqltle.CH_o)
- .debug_line      0x0029c9         0x38 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dgtge.CH_o)
- .debug_line      0x002a01         0x59 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.CH_o)
- .debug_line      0x002a5a         0x61 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixdfsi.CH_o)
- .debug_line      0x002abb         0x4a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.CH_o)
- .debug_line      0x002b05         0x3a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.CH_o)
- .debug_line      0x002b3f         0xa2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpadd.CH_o)
- .debug_line      0x002be1        0x100 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpdiv.CH_o)
- .debug_line      0x002ce1         0xde c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpmul.CH_o)
- .debug_line      0x002dbf         0xe8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpsubs.CH_o)
- .debug_line      0x002ea7         0x5f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dcompare.CH_o)
- .debug_line      0x002f06         0x45 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dtype.CH_o)
- .debug_line      0x002f4b         0x5c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dunpack.CH_o)
- .debug_line      0x002fa7         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dunpack2.CH_o)
- .debug_line      0x002ffa         0x49 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpropagateNaN.CH_o)
+ .debug_line      0x000000        0x3b4 build/default/production/mcc_generated_files/adc/src/adc1.o
+ .debug_line      0x0003b4        0x1b8 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
+ .debug_line      0x00056c        0x1d0 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
+ .debug_line      0x00073c        0x1b8 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
+ .debug_line      0x0008f4        0x1d0 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
+ .debug_line      0x000ac4        0x386 build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
+ .debug_line      0x000e4a         0x6f build/default/production/mcc_generated_files/system/src/dmt_asm.o
+ .debug_line      0x000eb9        0x1ad build/default/production/mcc_generated_files/system/src/dmt.o
+ .debug_line      0x001066        0x194 build/default/production/mcc_generated_files/system/src/reset.o
+ .debug_line      0x0011fa        0x16e build/default/production/mcc_generated_files/system/src/system.o
+ .debug_line      0x001368        0x144 build/default/production/mcc_generated_files/system/src/clock.o
+ .debug_line      0x0014ac        0x145 build/default/production/mcc_generated_files/system/src/pins.o
+ .debug_line      0x0015f1        0x139 build/default/production/mcc_generated_files/system/src/interrupt.o
+ .debug_line      0x00172a         0x60 build/default/production/mcc_generated_files/system/src/where_was_i.o
+ .debug_line      0x00178a         0x1a build/default/production/mcc_generated_files/system/src/config_bits.o
+ .debug_line      0x0017a4        0x197 build/default/production/mcc_generated_files/system/src/traps.o
+ .debug_line      0x00193b         0xb0 build/default/production/mcc_generated_files/timer/src/delay.o
+ .debug_line      0x0019eb        0x1ee build/default/production/mcc_generated_files/timer/src/tmr1.o
+ .debug_line      0x001bd9        0x1f3 build/default/production/mcc_generated_files/uart/src/uart1.o
+ .debug_line      0x001dcc        0x29e build/default/production/main.o
+ .debug_line      0x00206a        0x112 build/default/production/VCOMP.o
+ .debug_line      0x00217c         0x8b build/default/production/VCOMP_asm.o
+ .debug_line      0x002207         0x3b c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.CH_o)
+ .debug_line      0x002242         0x45 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(udivsi3.CH_o)
+ .debug_line      0x002287        0x136 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.CH_o)
+ .debug_line      0x0023bd        0x124 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.CH_o)
+ .debug_line      0x0024e1         0xcc c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.CH_o)
+ .debug_line      0x0025ad         0x72 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.CH_o)
+ .debug_line      0x00261f         0x7a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.CH_o)
+ .debug_line      0x002699         0x5e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(typefx.CH_o)
+ .debug_line      0x0026f7         0x51 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.CH_o)
+ .debug_line      0x002748         0x98 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.CH_o)
+ .debug_line      0x0027e0         0x79 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.CH_o)
+ .debug_line      0x002859         0x1a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.CH_o)
+ .debug_line      0x002873         0x6c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.CH_o)
+ .debug_line      0x0028df         0x5a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fpack.CH_o)
+ .debug_line      0x002939         0x57 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(umuldi3.CH_o)
+ .debug_line      0x002990         0x3a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(deqltle.CH_o)
+ .debug_line      0x0029ca         0x38 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dgtge.CH_o)
+ .debug_line      0x002a02         0x59 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.CH_o)
+ .debug_line      0x002a5b         0x61 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(fixdfsi.CH_o)
+ .debug_line      0x002abc         0x4a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(funpack.CH_o)
+ .debug_line      0x002b06         0x3a c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.CH_o)
+ .debug_line      0x002b40         0xa2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpadd.CH_o)
+ .debug_line      0x002be2        0x100 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpdiv.CH_o)
+ .debug_line      0x002ce2         0xde c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpmul.CH_o)
+ .debug_line      0x002dc0         0xe8 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpsubs.CH_o)
+ .debug_line      0x002ea8         0x5f c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dcompare.CH_o)
+ .debug_line      0x002f07         0x45 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dtype.CH_o)
+ .debug_line      0x002f4c         0x5c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dunpack.CH_o)
+ .debug_line      0x002fa8         0x53 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dunpack2.CH_o)
+ .debug_line      0x002ffb         0x49 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(dpropagateNaN.CH_o)
 
 .debug_frame      0x000000       0x1832
  *(.debug_frame)
- .debug_frame     0x000000        0x3d8 build/default/debug/mcc_generated_files/adc/src/adc1.o
- .debug_frame     0x0003d8        0x132 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
- .debug_frame     0x00050a        0x156 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
- .debug_frame     0x000660        0x132 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
- .debug_frame     0x000792        0x156 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
- .debug_frame     0x0008e8        0x472 build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
- .debug_frame     0x000d5a        0x1be build/default/debug/mcc_generated_files/system/src/dmt.o
- .debug_frame     0x000f18        0x118 build/default/debug/mcc_generated_files/system/src/reset.o
- .debug_frame     0x001030         0x48 build/default/debug/mcc_generated_files/system/src/system.o
- .debug_frame     0x001078         0x48 build/default/debug/mcc_generated_files/system/src/clock.o
- .debug_frame     0x0010c0         0x2e build/default/debug/mcc_generated_files/system/src/pins.o
- .debug_frame     0x0010ee         0x48 build/default/debug/mcc_generated_files/system/src/interrupt.o
- .debug_frame     0x001136        0x1bc build/default/debug/mcc_generated_files/system/src/traps.o
- .debug_frame     0x0012f2         0x48 build/default/debug/mcc_generated_files/timer/src/delay.o
- .debug_frame     0x00133a        0x170 build/default/debug/mcc_generated_files/timer/src/tmr1.o
- .debug_frame     0x0014aa        0x1e8 build/default/debug/mcc_generated_files/uart/src/uart1.o
- .debug_frame     0x001692        0x172 build/default/debug/main.o
- .debug_frame     0x001804         0x2e build/default/debug/VCOMP.o
+ .debug_frame     0x000000        0x3d8 build/default/production/mcc_generated_files/adc/src/adc1.o
+ .debug_frame     0x0003d8        0x132 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
+ .debug_frame     0x00050a        0x156 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
+ .debug_frame     0x000660        0x132 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
+ .debug_frame     0x000792        0x156 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
+ .debug_frame     0x0008e8        0x472 build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
+ .debug_frame     0x000d5a        0x1be build/default/production/mcc_generated_files/system/src/dmt.o
+ .debug_frame     0x000f18        0x118 build/default/production/mcc_generated_files/system/src/reset.o
+ .debug_frame     0x001030         0x48 build/default/production/mcc_generated_files/system/src/system.o
+ .debug_frame     0x001078         0x48 build/default/production/mcc_generated_files/system/src/clock.o
+ .debug_frame     0x0010c0         0x2e build/default/production/mcc_generated_files/system/src/pins.o
+ .debug_frame     0x0010ee         0x48 build/default/production/mcc_generated_files/system/src/interrupt.o
+ .debug_frame     0x001136        0x1bc build/default/production/mcc_generated_files/system/src/traps.o
+ .debug_frame     0x0012f2         0x48 build/default/production/mcc_generated_files/timer/src/delay.o
+ .debug_frame     0x00133a        0x170 build/default/production/mcc_generated_files/timer/src/tmr1.o
+ .debug_frame     0x0014aa        0x1e8 build/default/production/mcc_generated_files/uart/src/uart1.o
+ .debug_frame     0x001692        0x172 build/default/production/main.o
+ .debug_frame     0x001804         0x2e build/default/production/VCOMP.o
 
 .debug_str        0x000000        0xaec
  *(.debug_str)
- .debug_str       0x000000        0x2d5 build/default/debug/mcc_generated_files/adc/src/adc1.o
- .debug_str       0x0002d5         0x85 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
- .debug_str       0x00035a         0x8e build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
- .debug_str       0x0003e8         0x85 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
- .debug_str       0x00046d         0x8e build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
- .debug_str       0x0004fb        0x13b build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
- .debug_str       0x000636         0x52 build/default/debug/mcc_generated_files/system/src/dmt.o
- .debug_str       0x000688         0x17 build/default/debug/mcc_generated_files/system/src/reset.o
- .debug_str       0x00069f         0xf5 build/default/debug/mcc_generated_files/system/src/system.o
- .debug_str       0x000794         0x59 build/default/debug/mcc_generated_files/system/src/clock.o
- .debug_str       0x0007ed         0x37 build/default/debug/mcc_generated_files/system/src/pins.o
- .debug_str       0x000824         0x45 build/default/debug/mcc_generated_files/system/src/interrupt.o
- .debug_str       0x000869         0x24 build/default/debug/mcc_generated_files/system/src/traps.o
- .debug_str       0x00088d         0x25 build/default/debug/mcc_generated_files/timer/src/tmr1.o
- .debug_str       0x0008b2         0x48 build/default/debug/mcc_generated_files/uart/src/uart1.o
- .debug_str       0x0008fa         0xfb build/default/debug/main.o
- .debug_str       0x0009f5         0xf7 build/default/debug/VCOMP.o
+ .debug_str       0x000000        0x2d5 build/default/production/mcc_generated_files/adc/src/adc1.o
+ .debug_str       0x0002d5         0x85 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
+ .debug_str       0x00035a         0x8e build/default/production/mcc_generated_files/input_capture/src/sccp2.o
+ .debug_str       0x0003e8         0x85 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
+ .debug_str       0x00046d         0x8e build/default/production/mcc_generated_files/input_capture/src/sccp1.o
+ .debug_str       0x0004fb        0x13b build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
+ .debug_str       0x000636         0x52 build/default/production/mcc_generated_files/system/src/dmt.o
+ .debug_str       0x000688         0x17 build/default/production/mcc_generated_files/system/src/reset.o
+ .debug_str       0x00069f         0xf5 build/default/production/mcc_generated_files/system/src/system.o
+ .debug_str       0x000794         0x59 build/default/production/mcc_generated_files/system/src/clock.o
+ .debug_str       0x0007ed         0x37 build/default/production/mcc_generated_files/system/src/pins.o
+ .debug_str       0x000824         0x45 build/default/production/mcc_generated_files/system/src/interrupt.o
+ .debug_str       0x000869         0x24 build/default/production/mcc_generated_files/system/src/traps.o
+ .debug_str       0x00088d         0x25 build/default/production/mcc_generated_files/timer/src/tmr1.o
+ .debug_str       0x0008b2         0x48 build/default/production/mcc_generated_files/uart/src/uart1.o
+ .debug_str       0x0008fa         0xfb build/default/production/main.o
+ .debug_str       0x0009f5         0xf7 build/default/production/VCOMP.o
 
 .debug_loc
  *(.debug_loc)
@@ -1762,41 +1709,41 @@ __FBTSEQ
                   0x000000       0x1014
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000        0x1a6 build/default/debug/mcc_generated_files/adc/src/adc1.o
+                  0x000000        0x1a6 build/default/production/mcc_generated_files/adc/src/adc1.o
  .debug_pubnames
-                  0x0001a6        0x1a8 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
+                  0x0001a6        0x1a8 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
  .debug_pubnames
-                  0x00034e        0x19e build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
+                  0x00034e        0x19e build/default/production/mcc_generated_files/input_capture/src/sccp2.o
  .debug_pubnames
-                  0x0004ec        0x1a7 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
+                  0x0004ec        0x1a7 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
  .debug_pubnames
-                  0x000693        0x19d build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
+                  0x000693        0x19d build/default/production/mcc_generated_files/input_capture/src/sccp1.o
  .debug_pubnames
-                  0x000830         0xa8 build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
+                  0x000830         0xa8 build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
  .debug_pubnames
-                  0x0008d8        0x132 build/default/debug/mcc_generated_files/system/src/dmt.o
+                  0x0008d8        0x132 build/default/production/mcc_generated_files/system/src/dmt.o
  .debug_pubnames
-                  0x000a0a         0x54 build/default/debug/mcc_generated_files/system/src/reset.o
+                  0x000a0a         0x54 build/default/production/mcc_generated_files/system/src/reset.o
  .debug_pubnames
-                  0x000a5e         0x28 build/default/debug/mcc_generated_files/system/src/system.o
+                  0x000a5e         0x28 build/default/production/mcc_generated_files/system/src/system.o
  .debug_pubnames
-                  0x000a86         0x45 build/default/debug/mcc_generated_files/system/src/clock.o
+                  0x000a86         0x45 build/default/production/mcc_generated_files/system/src/clock.o
  .debug_pubnames
-                  0x000acb         0x26 build/default/debug/mcc_generated_files/system/src/pins.o
+                  0x000acb         0x26 build/default/production/mcc_generated_files/system/src/pins.o
  .debug_pubnames
-                  0x000af1         0x46 build/default/debug/mcc_generated_files/system/src/interrupt.o
+                  0x000af1         0x46 build/default/production/mcc_generated_files/system/src/interrupt.o
  .debug_pubnames
-                  0x000b37         0x95 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x000b37         0x95 build/default/production/mcc_generated_files/system/src/traps.o
  .debug_pubnames
-                  0x000bcc         0x40 build/default/debug/mcc_generated_files/timer/src/delay.o
+                  0x000bcc         0x40 build/default/production/mcc_generated_files/timer/src/delay.o
  .debug_pubnames
-                  0x000c0c         0xf8 build/default/debug/mcc_generated_files/timer/src/tmr1.o
+                  0x000c0c         0xf8 build/default/production/mcc_generated_files/timer/src/tmr1.o
  .debug_pubnames
-                  0x000d04        0x19d build/default/debug/mcc_generated_files/uart/src/uart1.o
+                  0x000d04        0x19d build/default/production/mcc_generated_files/uart/src/uart1.o
  .debug_pubnames
-                  0x000ea1         0x1b build/default/debug/main.o
+                  0x000ea1         0x1b build/default/production/main.o
  .debug_pubnames
-                  0x000ebc        0x158 build/default/debug/VCOMP.o
+                  0x000ebc        0x158 build/default/production/VCOMP.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1804,47 +1751,47 @@ __FBTSEQ
 .debug_aranges    0x000000        0x5b8
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/debug/mcc_generated_files/adc/src/adc1.o
+                  0x000000         0x18 build/default/production/mcc_generated_files/adc/src/adc1.o
  .debug_aranges
-                  0x000018         0x18 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
+                  0x000018         0x18 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
  .debug_aranges
-                  0x000030         0x18 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
+                  0x000030         0x18 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
  .debug_aranges
-                  0x000048         0x18 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
+                  0x000048         0x18 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
  .debug_aranges
-                  0x000060         0x18 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
+                  0x000060         0x18 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
  .debug_aranges
-                  0x000078         0x18 build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
+                  0x000078         0x18 build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
  .debug_aranges
-                  0x000090         0x20 build/default/debug/mcc_generated_files/system/src/dmt_asm.o
+                  0x000090         0x20 build/default/production/mcc_generated_files/system/src/dmt_asm.o
  .debug_aranges
-                  0x0000b0         0x18 build/default/debug/mcc_generated_files/system/src/dmt.o
+                  0x0000b0         0x18 build/default/production/mcc_generated_files/system/src/dmt.o
  .debug_aranges
-                  0x0000c8         0x18 build/default/debug/mcc_generated_files/system/src/reset.o
+                  0x0000c8         0x18 build/default/production/mcc_generated_files/system/src/reset.o
  .debug_aranges
-                  0x0000e0         0x18 build/default/debug/mcc_generated_files/system/src/system.o
+                  0x0000e0         0x18 build/default/production/mcc_generated_files/system/src/system.o
  .debug_aranges
-                  0x0000f8         0x18 build/default/debug/mcc_generated_files/system/src/clock.o
+                  0x0000f8         0x18 build/default/production/mcc_generated_files/system/src/clock.o
  .debug_aranges
-                  0x000110         0x18 build/default/debug/mcc_generated_files/system/src/pins.o
+                  0x000110         0x18 build/default/production/mcc_generated_files/system/src/pins.o
  .debug_aranges
-                  0x000128         0x18 build/default/debug/mcc_generated_files/system/src/interrupt.o
+                  0x000128         0x18 build/default/production/mcc_generated_files/system/src/interrupt.o
  .debug_aranges
-                  0x000140         0x20 build/default/debug/mcc_generated_files/system/src/where_was_i.o
+                  0x000140         0x20 build/default/production/mcc_generated_files/system/src/where_was_i.o
  .debug_aranges
-                  0x000160         0x18 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x000160         0x18 build/default/production/mcc_generated_files/system/src/traps.o
  .debug_aranges
-                  0x000178         0x18 build/default/debug/mcc_generated_files/timer/src/delay.o
+                  0x000178         0x18 build/default/production/mcc_generated_files/timer/src/delay.o
  .debug_aranges
-                  0x000190         0x18 build/default/debug/mcc_generated_files/timer/src/tmr1.o
+                  0x000190         0x18 build/default/production/mcc_generated_files/timer/src/tmr1.o
  .debug_aranges
-                  0x0001a8         0x20 build/default/debug/mcc_generated_files/uart/src/uart1.o
+                  0x0001a8         0x20 build/default/production/mcc_generated_files/uart/src/uart1.o
  .debug_aranges
-                  0x0001c8         0x18 build/default/debug/main.o
+                  0x0001c8         0x18 build/default/production/main.o
  .debug_aranges
-                  0x0001e0         0x18 build/default/debug/VCOMP.o
+                  0x0001e0         0x18 build/default/production/VCOMP.o
  .debug_aranges
-                  0x0001f8         0x20 build/default/debug/VCOMP_asm.o
+                  0x0001f8         0x20 build/default/production/VCOMP_asm.o
  .debug_aranges
                   0x000218         0x20 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.CH_o)
  .debug_aranges
@@ -5306,7 +5253,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a
 END GROUP
-OUTPUT(dist/default/debug/CH512MP506_Controller.X.debug.elf elf32-pic30)
+OUTPUT(dist/default/production/CH512MP506_Controller.X.production.elf elf32-pic30)
 LOAD /CW/_FSEC
 LOAD jump_table
 LOAD default_isr
@@ -5315,82 +5262,82 @@ LOAD data_init
 .debug_pubtypes
                   0x0005b8       0x1559
  .debug_pubtypes
-                  0x0005b8        0x296 build/default/debug/mcc_generated_files/adc/src/adc1.o
+                  0x0005b8        0x296 build/default/production/mcc_generated_files/adc/src/adc1.o
  .debug_pubtypes
-                  0x00084e         0xb3 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
+                  0x00084e         0xb3 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
  .debug_pubtypes
-                  0x000901         0xd0 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
+                  0x000901         0xd0 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
  .debug_pubtypes
-                  0x0009d1         0xb3 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
+                  0x0009d1         0xb3 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
  .debug_pubtypes
-                  0x000a84         0xd0 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
+                  0x000a84         0xd0 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
  .debug_pubtypes
-                  0x000b54        0x1fe build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
+                  0x000b54        0x1fe build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
  .debug_pubtypes
-                  0x000d52         0x89 build/default/debug/mcc_generated_files/system/src/dmt.o
+                  0x000d52         0x89 build/default/production/mcc_generated_files/system/src/dmt.o
  .debug_pubtypes
-                  0x000ddb         0x2f build/default/debug/mcc_generated_files/system/src/reset.o
+                  0x000ddb         0x2f build/default/production/mcc_generated_files/system/src/reset.o
  .debug_pubtypes
-                  0x000e0a        0x287 build/default/debug/mcc_generated_files/system/src/system.o
+                  0x000e0a        0x287 build/default/production/mcc_generated_files/system/src/system.o
  .debug_pubtypes
-                  0x001091         0x71 build/default/debug/mcc_generated_files/system/src/clock.o
+                  0x001091         0x71 build/default/production/mcc_generated_files/system/src/clock.o
  .debug_pubtypes
-                  0x001102         0xc4 build/default/debug/mcc_generated_files/system/src/pins.o
+                  0x001102         0xc4 build/default/production/mcc_generated_files/system/src/pins.o
  .debug_pubtypes
-                  0x0011c6         0xf6 build/default/debug/mcc_generated_files/system/src/interrupt.o
+                  0x0011c6         0xf6 build/default/production/mcc_generated_files/system/src/interrupt.o
  .debug_pubtypes
-                  0x0012bc         0xa9 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x0012bc         0xa9 build/default/production/mcc_generated_files/system/src/traps.o
  .debug_pubtypes
-                  0x001365         0x2c build/default/debug/mcc_generated_files/timer/src/delay.o
+                  0x001365         0x2c build/default/production/mcc_generated_files/timer/src/delay.o
  .debug_pubtypes
-                  0x001391         0xd8 build/default/debug/mcc_generated_files/timer/src/tmr1.o
+                  0x001391         0xd8 build/default/production/mcc_generated_files/timer/src/tmr1.o
  .debug_pubtypes
-                  0x001469        0x10e build/default/debug/mcc_generated_files/uart/src/uart1.o
+                  0x001469        0x10e build/default/production/mcc_generated_files/uart/src/uart1.o
  .debug_pubtypes
-                  0x001577        0x407 build/default/debug/main.o
+                  0x001577        0x407 build/default/production/main.o
  .debug_pubtypes
-                  0x00197e        0x193 build/default/debug/VCOMP.o
+                  0x00197e        0x193 build/default/production/VCOMP.o
 
 __c30_signature
                   0x001b11        0x1e6
  __c30_signature
-                  0x001b11          0x6 build/default/debug/mcc_generated_files/adc/src/adc1.o
+                  0x001b11          0x6 build/default/production/mcc_generated_files/adc/src/adc1.o
  __c30_signature
-                  0x001b17          0x6 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
+                  0x001b17          0x6 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
  __c30_signature
-                  0x001b1d          0x6 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
+                  0x001b1d          0x6 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
  __c30_signature
-                  0x001b23          0x6 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
+                  0x001b23          0x6 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
  __c30_signature
-                  0x001b29          0x6 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
+                  0x001b29          0x6 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
  __c30_signature
-                  0x001b2f          0x6 build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
+                  0x001b2f          0x6 build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
  __c30_signature
-                  0x001b35          0x6 build/default/debug/mcc_generated_files/system/src/dmt.o
+                  0x001b35          0x6 build/default/production/mcc_generated_files/system/src/dmt.o
  __c30_signature
-                  0x001b3b          0x6 build/default/debug/mcc_generated_files/system/src/reset.o
+                  0x001b3b          0x6 build/default/production/mcc_generated_files/system/src/reset.o
  __c30_signature
-                  0x001b41          0x6 build/default/debug/mcc_generated_files/system/src/system.o
+                  0x001b41          0x6 build/default/production/mcc_generated_files/system/src/system.o
  __c30_signature
-                  0x001b47          0x6 build/default/debug/mcc_generated_files/system/src/clock.o
+                  0x001b47          0x6 build/default/production/mcc_generated_files/system/src/clock.o
  __c30_signature
-                  0x001b4d          0x6 build/default/debug/mcc_generated_files/system/src/pins.o
+                  0x001b4d          0x6 build/default/production/mcc_generated_files/system/src/pins.o
  __c30_signature
-                  0x001b53          0x6 build/default/debug/mcc_generated_files/system/src/interrupt.o
+                  0x001b53          0x6 build/default/production/mcc_generated_files/system/src/interrupt.o
  __c30_signature
-                  0x001b59          0x6 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x001b59          0x6 build/default/production/mcc_generated_files/system/src/config_bits.o
  __c30_signature
-                  0x001b5f          0x6 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x001b5f          0x6 build/default/production/mcc_generated_files/system/src/traps.o
  __c30_signature
-                  0x001b65          0x6 build/default/debug/mcc_generated_files/timer/src/delay.o
+                  0x001b65          0x6 build/default/production/mcc_generated_files/timer/src/delay.o
  __c30_signature
-                  0x001b6b          0x6 build/default/debug/mcc_generated_files/timer/src/tmr1.o
+                  0x001b6b          0x6 build/default/production/mcc_generated_files/timer/src/tmr1.o
  __c30_signature
-                  0x001b71          0x6 build/default/debug/mcc_generated_files/uart/src/uart1.o
+                  0x001b71          0x6 build/default/production/mcc_generated_files/uart/src/uart1.o
  __c30_signature
-                  0x001b77          0x6 build/default/debug/main.o
+                  0x001b77          0x6 build/default/production/main.o
  __c30_signature
-                  0x001b7d          0x6 build/default/debug/VCOMP.o
+                  0x001b7d          0x6 build/default/production/VCOMP.o
  __c30_signature
                   0x001b83          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_dualch.o)
  __c30_signature
@@ -5518,321 +5465,321 @@ __c30_signature
 
 __xc_reference_data
 
-.nbss               0x1050         0x40
- .nbss              0x1050         0x40 build/default/debug/main.o
+.nbss               0x1000         0x40
+ .nbss              0x1000         0x40 build/default/production/main.o
 
-_00000000082C8D206911fec5
-                    0x1090         0x1c
- _00000000082C8D206911fec5
-                    0x1090         0x1c build/default/debug/VCOMP.o
-                    0x1090                  _VCOMP_coefficients
+_0000000008308D206911fecc
+                    0x1040         0x1c
+ _0000000008308D206911fecc
+                    0x1040         0x1c build/default/production/VCOMP.o
+                    0x1040                  _VCOMP_coefficients
 
-.ndata              0x10ac         0x18
- .ndata             0x10ac          0xc build/default/debug/main.o
- .ndata             0x10b8          0xc build/default/debug/VCOMP.o
-                    0x10b8                  _VCOMP_ACoefficients_size
-                    0x10ba                  _VCOMP_BCoefficients_size
-                    0x10bc                  _VCOMP_ControlHistory_size
-                    0x10be                  _VCOMP_ErrorHistory_size
-                    0x10c0                  _VCOMP_pre_shift
-                    0x10c2                  _VCOMP_post_shift_A
+.ndata              0x105c         0x18
+ .ndata             0x105c          0xc build/default/production/main.o
+ .ndata             0x1068          0xc build/default/production/VCOMP.o
+                    0x1068                  _VCOMP_ACoefficients_size
+                    0x106a                  _VCOMP_BCoefficients_size
+                    0x106c                  _VCOMP_ControlHistory_size
+                    0x106e                  _VCOMP_ErrorHistory_size
+                    0x1070                  _VCOMP_pre_shift
+                    0x1072                  _VCOMP_post_shift_A
 
-.nbss               0x10c4          0xe
- .nbss              0x10c4          0x8 build/default/debug/mcc_generated_files/system/src/dmt.o
-                    0x10c6                  _calibOffset
- .nbss              0x10cc          0x6 build/default/debug/mcc_generated_files/adc/src/adc1.o
+.nbss               0x1074          0xe
+ .nbss              0x1074          0x8 build/default/production/mcc_generated_files/system/src/dmt.o
+                    0x1076                  _calibOffset
+ .nbss              0x107c          0x6 build/default/production/mcc_generated_files/adc/src/adc1.o
 
 mcc_generated_files/system/src/where_was_i.s.scn1
-                    0x10d2          0x4
+                    0x1082          0x4
  mcc_generated_files/system/src/where_was_i.s.scn1
-                    0x10d2          0x4 build/default/debug/mcc_generated_files/system/src/where_was_i.o
-                    0x10d2                  _trapSrcAddr
+                    0x1082          0x4 build/default/production/mcc_generated_files/system/src/where_was_i.o
+                    0x1082                  _trapSrcAddr
 
-.nbss               0x10d6          0xe
- .nbss              0x10d6          0x4 build/default/debug/VCOMP.o
-                    0x10d6                  _VCOMP_post_shift_B
-                    0x10d8                  _VCOMP_post_scaler
- .nbss              0x10da          0x2 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
- .nbss              0x10dc          0x2 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
- .nbss              0x10de          0x2 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
- .nbss              0x10e0          0x2 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
- .nbss              0x10e2          0x2 build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
+.nbss               0x1086          0xe
+ .nbss              0x1086          0x4 build/default/production/VCOMP.o
+                    0x1086                  _VCOMP_post_shift_B
+                    0x1088                  _VCOMP_post_scaler
+ .nbss              0x108a          0x2 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
+ .nbss              0x108c          0x2 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
+ .nbss              0x108e          0x2 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
+ .nbss              0x1090          0x2 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
+ .nbss              0x1092          0x2 build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
 
-.ndata              0x10e4          0x2
- .ndata             0x10e4          0x2 build/default/debug/mcc_generated_files/system/src/traps.o
+.ndata              0x1094          0x2
+ .ndata             0x1094          0x2 build/default/production/mcc_generated_files/system/src/traps.o
 
-.nbss               0x10e6          0x6
- .nbss              0x10e6          0x2 build/default/debug/mcc_generated_files/timer/src/tmr1.o
- .nbss              0x10e8          0x2 build/default/debug/mcc_generated_files/uart/src/uart1.o
- .nbss              0x10ea          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.CH_o)
-                    0x10ea                  _errno
+.nbss               0x1096          0x6
+ .nbss              0x1096          0x2 build/default/production/mcc_generated_files/timer/src/tmr1.o
+ .nbss              0x1098          0x2 build/default/production/mcc_generated_files/uart/src/uart1.o
+ .nbss              0x109a          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(errno.CH_o)
+                    0x109a                  _errno
 
 .ybss               0x7ff2          0xe
- .ybss              0x7ff2          0xe build/default/debug/VCOMP.o
+ .ybss              0x7ff2          0xe build/default/production/VCOMP.o
                     0x7ff2                  _VCOMP_histories
 
-.bss                0x10ec         0x88
- .bss               0x10ec         0x88 build/default/debug/VCOMP.o
-                    0x10ec                  _VCOMP
+.bss                0x109c         0x88
+ .bss               0x109c         0x88 build/default/production/VCOMP.o
+                    0x109c                  _VCOMP
 
-.data               0x1174         0x42
- .data              0x1174         0x42 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.CH_o)
-                    0x1174                  __stdout
-                    0x1176                  ___stdout_used
+.data               0x1124         0x42
+ .data              0x1124         0x42 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(stdout.CH_o)
+                    0x1124                  __stdout
+                    0x1126                  ___stdout_used
 
-.bss                0x11b6         0x20
- .bss               0x11b6         0x20 build/default/debug/mcc_generated_files/system/src/traps.o
+.bss                0x1166         0x20
+ .bss               0x1166         0x20 build/default/production/mcc_generated_files/system/src/traps.o
 
-.data               0x11d6         0x3a
- .data              0x11d6         0x1e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.CH_o)
- .data              0x11f4         0x1c build/default/debug/VCOMP.o
-                    0x11f4                  _VCOMP_ACoefficients
-                    0x1200                  _VCOMP_BCoefficients
+.data               0x1186         0x3a
+ .data              0x1186         0x1e c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__printf_core.CH_o)
+ .data              0x11a4         0x1c build/default/production/VCOMP.o
+                    0x11a4                  _VCOMP_ACoefficients
+                    0x11b0                  _VCOMP_BCoefficients
 
-.bss                0x1210         0x14
- .bss               0x1210         0x14 build/default/debug/main.o
+.bss                0x11c0         0x14
+ .bss               0x11c0         0x14 build/default/production/main.o
 
-.data               0x1224         0x10
- .data              0x1224         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_fp.CH_o)
+.data               0x11d4         0x10
+ .data              0x11d4         0x10 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__fmt_fp.CH_o)
 
-.bss                0x1234          0x2
- .bss               0x1234          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__errno_location.CH_o)
-                    0x1234                  ___errno_val
+.bss                0x11e4          0x2
+ .bss               0x11e4          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a(__errno_location.CH_o)
+                    0x11e4                  ___errno_val
 
 .ivt._ADCInterrupt
                   0x0000c8          0x2
  .ivt._ADCInterrupt
-                  0x0000c8          0x2 build/default/debug/mcc_generated_files/adc/src/adc1.o
+                  0x0000c8          0x2 build/default/production/mcc_generated_files/adc/src/adc1.o
 
 .ivt._ADCAN0Interrupt
                   0x0000ca          0x2
  .ivt._ADCAN0Interrupt
-                  0x0000ca          0x2 build/default/debug/mcc_generated_files/adc/src/adc1.o
+                  0x0000ca          0x2 build/default/production/mcc_generated_files/adc/src/adc1.o
 
 .ivt._ADCAN1Interrupt
                   0x0000cc          0x2
  .ivt._ADCAN1Interrupt
-                  0x0000cc          0x2 build/default/debug/mcc_generated_files/adc/src/adc1.o
+                  0x0000cc          0x2 build/default/production/mcc_generated_files/adc/src/adc1.o
 
 .ivt._CCP2Interrupt
                   0x000042          0x2
  .ivt._CCP2Interrupt
-                  0x000042          0x2 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
+                  0x000042          0x2 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
 
 .ivt._CCP1Interrupt
                   0x000020          0x2
  .ivt._CCP1Interrupt
-                  0x000020          0x2 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
+                  0x000020          0x2 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
 
 .ivt._DMTInterrupt
                   0x00006e          0x2
  .ivt._DMTInterrupt
-                  0x00006e          0x2 build/default/debug/mcc_generated_files/system/src/dmt.o
+                  0x00006e          0x2 build/default/production/mcc_generated_files/system/src/dmt.o
 
 .config_BTMODE    0x801800          0x2
  .config_BTMODE
-                  0x801800          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x801800          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_IBSEQ     0x057ffc          0x2
- .config_IBSEQ    0x057ffc          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+ .config_IBSEQ    0x057ffc          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_CPRE15    0x057f78          0x2
  .config_CPRE15
-                  0x057f78          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f78          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_CPRD15    0x057f70          0x2
  .config_CPRD15
-                  0x057f70          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f70          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_CPRC15    0x057f68          0x2
  .config_CPRC15
-                  0x057f68          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f68          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_CPRB15    0x057f60          0x2
  .config_CPRB15
-                  0x057f60          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f60          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_CPRA4     0x057f58          0x2
- .config_CPRA4    0x057f58          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+ .config_CPRA4    0x057f58          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_CTXT4     0x057f44          0x2
- .config_CTXT4    0x057f44          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+ .config_CTXT4    0x057f44          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_SPI2PIN
                   0x057f40          0x2
  .config_SPI2PIN
-                  0x057f40          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f40          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_DMTDIS    0x057f3c          0x2
  .config_DMTDIS
-                  0x057f3c          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f3c          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_DMTCNTH
                   0x057f38          0x2
  .config_DMTCNTH
-                  0x057f38          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f38          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_DMTCNTL
                   0x057f34          0x2
  .config_DMTCNTL
-                  0x057f34          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f34          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_DMTIVTH
                   0x057f30          0x2
  .config_DMTIVTH
-                  0x057f30          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f30          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_DMTIVTL
                   0x057f2c          0x2
  .config_DMTIVTL
-                  0x057f2c          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f2c          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_NOBTSWP
                   0x057f28          0x2
  .config_NOBTSWP
-                  0x057f28          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f28          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_BISTDIS
                   0x057f24          0x2
  .config_BISTDIS
-                  0x057f24          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f24          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_FWDTEN    0x057f20          0x2
  .config_FWDTEN
-                  0x057f20          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+                  0x057f20          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_XTBST     0x057f1c          0x2
- .config_XTBST    0x057f1c          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+ .config_XTBST    0x057f1c          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_IESO      0x057f18          0x2
- .config_IESO     0x057f18          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+ .config_IESO     0x057f18          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .config_BSLIM     0x057f10          0x2
- .config_BSLIM    0x057f10          0x2 build/default/debug/mcc_generated_files/system/src/config_bits.o
+ .config_BSLIM    0x057f10          0x2 build/default/production/mcc_generated_files/system/src/config_bits.o
 
 .ivt._AddressError
                   0x000006          0x2
  .ivt._AddressError
-                  0x000006          0x2 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x000006          0x2 build/default/production/mcc_generated_files/system/src/traps.o
 
 .ivt._HardTrapError
                   0x000008          0x2
  .ivt._HardTrapError
-                  0x000008          0x2 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x000008          0x2 build/default/production/mcc_generated_files/system/src/traps.o
 
 .ivt._SoftTrapError
                   0x000010          0x2
  .ivt._SoftTrapError
-                  0x000010          0x2 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x000010          0x2 build/default/production/mcc_generated_files/system/src/traps.o
 
 .ivt._OscillatorFail
                   0x000004          0x2
  .ivt._OscillatorFail
-                  0x000004          0x2 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x000004          0x2 build/default/production/mcc_generated_files/system/src/traps.o
 
 .ivt._MathError
                   0x00000c          0x2
  .ivt._MathError
-                  0x00000c          0x2 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x00000c          0x2 build/default/production/mcc_generated_files/system/src/traps.o
 
 .ivt._StackError
                   0x00000a          0x2
  .ivt._StackError
-                  0x00000a          0x2 build/default/debug/mcc_generated_files/system/src/traps.o
+                  0x00000a          0x2 build/default/production/mcc_generated_files/system/src/traps.o
 
 .ivt._T1Interrupt
                   0x000016          0x2
  .ivt._T1Interrupt
-                  0x000016          0x2 build/default/debug/mcc_generated_files/timer/src/tmr1.o
+                  0x000016          0x2 build/default/production/mcc_generated_files/timer/src/tmr1.o
 
 .const              0xac74        0x2fe load address 0x002c74  
- .const             0xac74        0x1cc build/default/debug/main.o
- .const             0xae40         0x64 build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
+ .const             0xac74        0x1cc build/default/production/main.o
+ .const             0xae40         0x64 build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
                     0xae40                  _PWM_HS
- .const             0xaea4         0x38 build/default/debug/mcc_generated_files/adc/src/adc1.o
+ .const             0xaea4         0x38 build/default/production/mcc_generated_files/adc/src/adc1.o
                     0xaea4                  _adc1Multicore
                     0xaeba                  _ADC1
- .const             0xaedc         0x32 build/default/debug/mcc_generated_files/uart/src/uart1.o
+ .const             0xaedc         0x32 build/default/production/mcc_generated_files/uart/src/uart1.o
                     0xaedc                  _UART1_Drv
- .const             0xaf0e         0x14 build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
+ .const             0xaf0e         0x14 build/default/production/mcc_generated_files/input_capture/src/sccp4.o
                     0xaf0e                  _FET_TEMP_BOT_FALLING
- .const             0xaf22         0x14 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
+ .const             0xaf22         0x14 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
                     0xaf22                  _FET_TEMP_TOP_FALLING
- .const             0xaf36         0x14 build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
+ .const             0xaf36         0x14 build/default/production/mcc_generated_files/input_capture/src/sccp3.o
                     0xaf36                  _FET_TEMP_BOT_RISING
- .const             0xaf4a         0x14 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
+ .const             0xaf4a         0x14 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
                     0xaf4a                  _FET_TEMP_TOP_RISING
- .const             0xaf5e         0x14 build/default/debug/mcc_generated_files/timer/src/tmr1.o
+ .const             0xaf5e         0x14 build/default/production/mcc_generated_files/timer/src/tmr1.o
                     0xaf5e                  _Timer1
 
 .text             0x002f72       0x1780
- .text            0x002f72        0x67c build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o
-                  0x002f72                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEnable
-                  0x002f88                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorDisable
-                  0x002f9e                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_ModeSet
-                  0x002fe0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Enable
-                  0x002fe8                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Disable
-                  0x002ff0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPeriodSet
-                  0x002ffc                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterDutyCycleSet
-                  0x003008                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPhaseSet
-                  0x003014                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PeriodSet
-                  0x00302e                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DutyCycleSet
-                  0x003048                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSelect
-                  0x003072                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSet
-                  0x00308c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataSet
-                  0x0030b8                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataHighSet
-                  0x0030f2                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataLowSet
-                  0x003126                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataGet
-                  0x003148                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighEnable
-                  0x00315e                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowEnable
-                  0x003174                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighDisable
-                  0x00318a                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowDisable
-                  0x0031a0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeLowSet
-                  0x0031ba                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeHighSet
-                  0x0031d4                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeSet
-                  0x0031f2                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCompareValueSet
-                  0x00320c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptEnable
-                  0x00324c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptDisable
-                  0x00328c                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusClear
-                  0x0032cc                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusGet
-                  0x003352                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdateRequest
-                  0x003368                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdatePending
-                  0x003392                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerACompareValueSet
-                  0x0033ac                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerBCompareValueSet
-                  0x0033c6                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCCompareValueSet
-                  0x0033e0                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Enable
-                  0x003412                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Disable
-                  0x003444                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Enable
-                  0x003476                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Disable
-                  0x0034a8                  build/default/debug/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_FaultModeLatchClear
+ .text            0x002f72        0x67c build/default/production/mcc_generated_files/pwm_hs/src/pwm.o
+                  0x002f72                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEnable
+                  0x002f88                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorDisable
+                  0x002f9e                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_ModeSet
+                  0x002fe0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Enable
+                  0x002fe8                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Disable
+                  0x002ff0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPeriodSet
+                  0x002ffc                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterDutyCycleSet
+                  0x003008                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_MasterPhaseSet
+                  0x003014                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PeriodSet
+                  0x00302e                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DutyCycleSet
+                  0x003048                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSelect
+                  0x003072                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_PhaseSet
+                  0x00308c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataSet
+                  0x0030b8                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataHighSet
+                  0x0030f2                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataLowSet
+                  0x003126                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideDataGet
+                  0x003148                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighEnable
+                  0x00315e                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowEnable
+                  0x003174                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideHighDisable
+                  0x00318a                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_OverrideLowDisable
+                  0x0031a0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeLowSet
+                  0x0031ba                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeHighSet
+                  0x0031d4                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_DeadTimeSet
+                  0x0031f2                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCompareValueSet
+                  0x00320c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptEnable
+                  0x00324c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorInterruptDisable
+                  0x00328c                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusClear
+                  0x0032cc                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_GeneratorEventStatusGet
+                  0x003352                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdateRequest
+                  0x003368                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_SoftwareUpdatePending
+                  0x003392                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerACompareValueSet
+                  0x0033ac                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerBCompareValueSet
+                  0x0033c6                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_TriggerCCompareValueSet
+                  0x0033e0                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Enable
+                  0x003412                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger1Disable
+                  0x003444                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Enable
+                  0x003476                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_Trigger2Disable
+                  0x0034a8                  build/default/production/mcc_generated_files/pwm_hs/src/pwm.o:_PWM_FaultModeLatchClear
                   0x0034be                  _PWM_Initialize
                   0x003540                  _PWM_Deinitialize
                   0x0035a8                  _PWM_GeneratorEOCEventCallbackRegister
                   0x0035ba                  _PWM_GeneratorEOCEventCallback
                   0x0035c2                  _PWM_GeneratorTasks
- .text            0x0035ee        0x65a build/default/debug/main.o
-                  0x003628                  build/default/debug/main.o:_TMR1_INT
-                  0x00370e                  build/default/debug/main.o:_AN1_INT
-                  0x0039da                  build/default/debug/main.o:_FET_TOP_Rise_Handler
-                  0x003a0e                  build/default/debug/main.o:_FET_TOP_Fall_Handler
+ .text            0x0035ee        0x65a build/default/production/main.o
+                  0x003628                  build/default/production/main.o:_TMR1_INT
+                  0x00370e                  build/default/production/main.o:_AN1_INT
+                  0x0039da                  build/default/production/main.o:_FET_TOP_Rise_Handler
+                  0x003a0e                  build/default/production/main.o:_FET_TOP_Fall_Handler
                   0x003be8                  _main
- .text            0x003c48        0x524 build/default/debug/mcc_generated_files/adc/src/adc1.o
-                  0x003c48                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_Enable
-                  0x003c50                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_Disable
-                  0x003c58                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerEnable
-                  0x003c60                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerDisable
-                  0x003c68                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_ChannelSelect
-                  0x003c70                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_ConversionResultGet
-                  0x003c96                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IsConversionComplete
-                  0x003cd8                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_ResolutionSet
-                  0x003cf6                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptEnable
-                  0x003cfe                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptDisable
-                  0x003d06                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptFlagClear
-                  0x003d0e                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptPrioritySet
-                  0x003d30                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptEnable
-                  0x003d50                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptDisable
-                  0x003d70                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptFlagClear
-                  0x003d8c                  build/default/debug/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptPrioritySet
+ .text            0x003c48        0x524 build/default/production/mcc_generated_files/adc/src/adc1.o
+                  0x003c48                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_Enable
+                  0x003c50                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_Disable
+                  0x003c58                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerEnable
+                  0x003c60                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_SoftwareTriggerDisable
+                  0x003c68                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_ChannelSelect
+                  0x003c70                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_ConversionResultGet
+                  0x003c96                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IsConversionComplete
+                  0x003cd8                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_ResolutionSet
+                  0x003cf6                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptEnable
+                  0x003cfe                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptDisable
+                  0x003d06                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptFlagClear
+                  0x003d0e                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_InterruptPrioritySet
+                  0x003d30                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptEnable
+                  0x003d50                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptDisable
+                  0x003d70                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptFlagClear
+                  0x003d8c                  build/default/production/mcc_generated_files/adc/src/adc1.o:_ADC1_IndividualChannelInterruptPrioritySet
                   0x003dd0                  _ADC1_Initialize
                   0x003ea8                  _ADC1_Deinitialize
                   0x003f60                  _ADC1_SharedCorePowerEnable
@@ -5845,7 +5792,7 @@ mcc_generated_files/system/src/where_was_i.s.scn1
                   0x0040f8                  _ADC1_ChannelTasks
                   0x004152                  _ADC1_ComparatorCallbackRegister
                   0x004164                  _ADC1_ComparatorCallback
- .text            0x00416c        0x2b4 build/default/debug/mcc_generated_files/uart/src/uart1.o
+ .text            0x00416c        0x2b4 build/default/production/mcc_generated_files/uart/src/uart1.o
                   0x00416c                  _UART1_Initialize
                   0x00418c                  _UART1_Deinitialize
                   0x0041a2                  _UART1_Read
@@ -5863,9 +5810,9 @@ mcc_generated_files/system/src/where_was_i.s.scn1
                   0x004302                  _UART1_BRGCountGet
                   0x00431e                  _UART1_BaudRateSet
                   0x0043b0                  _UART1_BaudRateGet
- .text            0x004420        0x1be build/default/debug/VCOMP.o
+ .text            0x004420        0x1be build/default/production/VCOMP.o
                   0x004420                  _VCOMP_Initialize
- .text            0x0045de        0x114 build/default/debug/mcc_generated_files/system/src/reset.o
+ .text            0x0045de        0x114 build/default/production/mcc_generated_files/system/src/reset.o
                   0x004690                  _RESET_CauseGet
                   0x004698                  _RESET_CauseHandler
                   0x0046ea                  _RESET_CauseClearAll
@@ -5873,8 +5820,8 @@ mcc_generated_files/system/src/where_was_i.s.scn1
 .dinit            0x0046f2        0x110
  .dinit           0x0046f2        0x110 data_init
 
-.text             0x004802        0x80e
- .text            0x004802         0xfe build/default/debug/mcc_generated_files/system/src/dmt.o
+.text             0x004802        0x82a
+ .text            0x004802         0xfe build/default/production/mcc_generated_files/system/src/dmt.o
                   0x00481a                  _DMT_Initialize
                   0x00482c                  _DMT_Enable
                   0x004836                  _DMT_PreClear
@@ -5887,7 +5834,7 @@ mcc_generated_files/system/src/where_was_i.s.scn1
                   0x0048ca                  _DMT_CounterGet
                   0x0048e8                  _DMT_EventCallbackRegister
                   0x0048fa                  _DMT_EventCallback
- .text            0x004900         0xec build/default/debug/mcc_generated_files/input_capture/src/sccp4.o
+ .text            0x004900         0xec build/default/production/mcc_generated_files/input_capture/src/sccp4.o
                   0x004900                  _SCCP4_InputCapture_Initialize
                   0x00492a                  _SCCP4_InputCapture_Deinitialize
                   0x004954                  _SCCP4_InputCapture_Start
@@ -5899,7 +5846,7 @@ mcc_generated_files/system/src/where_was_i.s.scn1
                   0x0049b8                  _SCCP4_InputCapture_HasBufferOverflowed
                   0x0049d0                  _SCCP4_InputCapture_IsBufferEmpty
                   0x0049e4                  _SCCP4_InputCapture_OverflowFlagClear
- .text            0x0049ec         0xea build/default/debug/mcc_generated_files/input_capture/src/sccp3.o
+ .text            0x0049ec         0xea build/default/production/mcc_generated_files/input_capture/src/sccp3.o
                   0x0049ec                  _SCCP3_InputCapture_Initialize
                   0x004a16                  _SCCP3_InputCapture_Deinitialize
                   0x004a40                  _SCCP3_InputCapture_Start
@@ -5911,7 +5858,7 @@ mcc_generated_files/system/src/where_was_i.s.scn1
                   0x004aa2                  _SCCP3_InputCapture_HasBufferOverflowed
                   0x004aba                  _SCCP3_InputCapture_IsBufferEmpty
                   0x004ace                  _SCCP3_InputCapture_OverflowFlagClear
- .text            0x004ad6         0xe0 build/default/debug/mcc_generated_files/input_capture/src/sccp2.o
+ .text            0x004ad6         0xe0 build/default/production/mcc_generated_files/input_capture/src/sccp2.o
                   0x004ad6                  _SCCP2_InputCapture_Initialize
                   0x004b04                  _SCCP2_InputCapture_Deinitialize
                   0x004b32                  _SCCP2_InputCapture_Start
@@ -5922,7 +5869,7 @@ mcc_generated_files/system/src/where_was_i.s.scn1
                   0x004b82                  _SCCP2_InputCapture_HasBufferOverflowed
                   0x004b9a                  _SCCP2_InputCapture_IsBufferEmpty
                   0x004bae                  _SCCP2_InputCapture_OverflowFlagClear
- .text            0x004bb6         0xe0 build/default/debug/mcc_generated_files/input_capture/src/sccp1.o
+ .text            0x004bb6         0xe0 build/default/production/mcc_generated_files/input_capture/src/sccp1.o
                   0x004bb6                  _SCCP1_InputCapture_Initialize
                   0x004be4                  _SCCP1_InputCapture_Deinitialize
                   0x004c12                  _SCCP1_InputCapture_Start
@@ -5933,9 +5880,9 @@ mcc_generated_files/system/src/where_was_i.s.scn1
                   0x004c62                  _SCCP1_InputCapture_HasBufferOverflowed
                   0x004c7a                  _SCCP1_InputCapture_IsBufferEmpty
                   0x004c8e                  _SCCP1_InputCapture_OverflowFlagClear
- .text            0x004c96         0x9e build/default/debug/mcc_generated_files/timer/src/tmr1.o
-                  0x004c96                  build/default/debug/mcc_generated_files/timer/src/tmr1.o:_TMR1_PeriodGet
-                  0x004ca0                  build/default/debug/mcc_generated_files/timer/src/tmr1.o:_TMR1_CounterGet
+ .text            0x004c96         0x9e build/default/production/mcc_generated_files/timer/src/tmr1.o
+                  0x004c96                  build/default/production/mcc_generated_files/timer/src/tmr1.o:_TMR1_PeriodGet
+                  0x004ca0                  build/default/production/mcc_generated_files/timer/src/tmr1.o:_TMR1_CounterGet
                   0x004caa                  _TMR1_Initialize
                   0x004cc0                  _TMR1_Deinitialize
                   0x004cd0                  _TMR1_Start
@@ -5945,38 +5892,38 @@ mcc_generated_files/system/src/where_was_i.s.scn1
                   0x004d10                  _TMR1_TimeoutCallbackRegister
                   0x004d22                  _TMR1_TimeoutCallback
                   0x004d28                  _TMR1_PeriodCountSet
- .text            0x004d34         0x9e build/default/debug/VCOMP_asm.o
+ .text            0x004d34         0x9e build/default/production/VCOMP_asm.o
                   0x004d34                  _VCOMP_Update
                   0x004d92                  _VCOMP_Reset
                   0x004dae                  _VCOMP_Precharge
- .text            0x004dd2         0x8a build/default/debug/mcc_generated_files/system/src/clock.o
+ .text            0x004dd2         0x8a build/default/production/mcc_generated_files/system/src/clock.o
                   0x004dd2                  _CLOCK_Initialize
                   0x004e44                  _CLOCK_AuxPllLockStatusGet
- .text            0x004e5c         0x82 build/default/debug/mcc_generated_files/system/src/interrupt.o
+ .text            0x004e5c         0x82 build/default/production/mcc_generated_files/system/src/interrupt.o
                   0x004e5c                  _INTERRUPT_Initialize
                   0x004e9c                  _INTERRUPT_Deinitialize
- .text            0x004ede         0x7c build/default/debug/mcc_generated_files/system/src/pins.o
+ .text            0x004ede         0x7c build/default/production/mcc_generated_files/system/src/pins.o
                   0x004ede                  _PINS_Initialize
- .text            0x004f5a         0x56 build/default/debug/mcc_generated_files/timer/src/delay.o
+ .text            0x004f5a         0x56 build/default/production/mcc_generated_files/timer/src/delay.o
                   0x004f5a                  _DELAY_milliseconds
                   0x004f7c                  _DELAY_microseconds
- .text            0x004fb0         0x34 build/default/debug/mcc_generated_files/system/src/dmt_asm.o
+ .text            0x004fb0         0x34 build/default/production/mcc_generated_files/system/src/dmt_asm.o
                   0x004fb2                  _DMT_CalibratedCounterGet
                   0x004fc6                  _DMT_Calibrate
- .text            0x004fe4         0x2c build/default/debug/mcc_generated_files/system/src/system.o
+ .text            0x004fe4         0x2c build/default/production/mcc_generated_files/system/src/system.o
                   0x004ff0                  _SYSTEM_Initialize
+ .text            0x005010         0x1c build/default/production/mcc_generated_files/system/src/traps.o
+                  0x005010                  _TRAPS_halt_on_error
 
-.init.delay32     0x005010         0x1c
- .init.delay32    0x005010         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32ch.Meo)
-                  0x005010                  ___delay32
+.init.delay32     0x00502c         0x1c
+ .init.delay32    0x00502c         0x1c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(delay32ch.Meo)
+                  0x00502c                  ___delay32
 
-.text             0x00502c         0x2a
- .text            0x00502c         0x1a build/default/debug/mcc_generated_files/system/src/traps.o
-                  0x00502c                  _TRAPS_halt_on_error
- .text            0x005046         0x10 build/default/debug/mcc_generated_files/system/src/where_was_i.o
-                  0x005046                  _where_was_i
+.text             0x005048         0x10
+ .text            0x005048         0x10 build/default/production/mcc_generated_files/system/src/where_was_i.o
+                  0x005048                  _where_was_i
 
 data_init_dualch.S.scn1
-                  0x005056          0x2
+                  0x005058          0x2
  data_init_dualch.S.scn1
-                  0x005056          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_dualch.o)
+                  0x005058          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_dualch.o)
