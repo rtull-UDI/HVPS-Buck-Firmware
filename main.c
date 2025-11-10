@@ -462,7 +462,9 @@ int main(void) {
 #ifdef DEBUG
     printf("System Initialized...\r\n");
 #endif
-
+    
+    ScaleCalculate();
+    
     LD2_SetHigh();
     LD3_SetLow();
 
@@ -505,8 +507,6 @@ SCCP4_InputCapture_CallbackRegister(FET_BOT_Fall_Handler); // BOT TEMP falling e
 #ifdef DEBUG
     printf("All Interrupts Enabled...\r\n");
 #endif
-
-    ScaleCalculate();
 
     while (1) {
         VoltageReadout();
