@@ -123,7 +123,7 @@ static volatile uint16_t ss_step_tmr_ticks = 0; // soft-start step timer
 // Datasheet mapping (LMG352xR030, Rev B, Jan 2025):
 // TJ[°C] = 162.3 * D + 20.1, where D = duty (0..1), fTEMP ~ 9 kHz.
 // Duty typical: ~3% @ 25°C to ~82% @ 150°C. OT fault drives TEMP = HIGH.  (TI)
-#define TEMP_PWM_PRINT_MS   2000U  // UART print period
+#define TEMP_PWM_PRINT_MS   1000U  // UART print period
 #define TEMP_IIR_ALPHA_NUM  1U    // IIR alpha = 1/8 (light smoothing)
 #define TEMP_IIR_ALPHA_DEN  8U
 
@@ -291,9 +291,10 @@ static void VoltageReadout(void) {
 
     vin_mv = (uint32_t) vin_temp;
     vout_mv = (uint32_t) vout_temp;
-    
-        static uint32_t t_last_ms = 0;
 
+    static uint32_t t_last_ms = 0;
+
+    // Print counter to limit frequency of UART prints. Speed defined as PRINT_MS
     // Snapshot g_ms without disabling interrupts (double-read)
     uint32_t now_ms_1, now_ms_2;
     do {
@@ -474,15 +475,7 @@ static void Initializations(void) {
     LD2_SetHigh();
     LD3_SetLow();
 
-    PWM_GeneratorEnable(1);
-#ifdef DEBUG
-    printf("PWM Generator Enabled...\r\n");
-#endif
 
-    TMR1_Start();
-#ifdef DEBUG
-    printf("Timer 1 Enabled...\r\n");
-#endif
 
     VCOMP_ControllerInitialize();
 #ifdef DEBUG
@@ -510,9 +503,59 @@ static void Initializations(void) {
     SCCP2_InputCapture_CallbackRegister(FET_TOP_Fall_Handler); // TOP TEMP falling edges
     SCCP3_InputCapture_CallbackRegister(FET_BOT_Rise_Handler); // BOT TEMP rising edges
     SCCP4_InputCapture_CallbackRegister(FET_BOT_Fall_Handler); // BOT TEMP falling edges
+
+    PWM_GeneratorEnable(1);
+#ifdef DEBUG
+    printf("PWM Generator Enabled...\r\n");
+#endif
+
+    TMR1_Start();
+#ifdef DEBUG
+    printf("Timer 1 Enabled...\r\n");
+#endif
+
 #ifdef DEBUG
     printf("All Interrupts Enabled...\r\n");
 #endif
+}
+
+// -----------------------------------------------------------------------------
+// FET Digital Reads
+// -----------------------------------------------------------------------------
+
+bool TopFault = 0;
+bool TopOC = 0;
+bool BottomFault = 0;
+bool BottomOC = 0;
+
+static void StatusCheck(void) {
+    TopFault = TOP_FAULT_GetValue();
+    TopOC = TOP_OC_GetValue();
+    BottomFault = BOTTOM_FAULT_GetValue();
+    BottomOC = BOTTOM_OC_GetValue();
+
+    static uint32_t t_last_ms = 0;
+    // Print counter to limit frequency of UART prints. Speed defined as PRINT_MS
+    // Snapshot g_ms without disabling interrupts (double-read)
+    uint32_t now_ms_1, now_ms_2;
+    do {
+        now_ms_1 = g_ms;
+        now_ms_2 = g_ms;
+    } while (now_ms_1 != now_ms_2);
+    uint32_t now_ms = now_ms_2;
+
+    if ((uint32_t) (now_ms - t_last_ms) < PRINT_MS) {
+        return;
+    }
+    t_last_ms = now_ms;
+
+#ifdef DEBUG
+    printf("Top OC: %d\r\n", TopOC);
+    printf("Top Fault: %d\r\n", TopFault);
+    printf("Bottom OC: %d\r\n", BottomOC);
+    printf("Bottom Fault: %d\r\n", BottomFault);
+#endif
+
 }
 
 // -----------------------------------------------------------------------------
@@ -520,18 +563,18 @@ static void Initializations(void) {
 // -----------------------------------------------------------------------------
 
 int main(void) {
-    
+
     SYSTEM_Initialize();
-    
+
 #ifdef DEBUG
     printf("System Initialized...\r\n");
 #endif
 
     Initializations();
-    
+
     while (1) {
         VoltageReadout();
+        StatusCheck();
         TemperatureTelemetryTask();
-        //DELAY_milliseconds(500);
     }
 }
