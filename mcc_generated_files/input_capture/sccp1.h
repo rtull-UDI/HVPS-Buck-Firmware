@@ -60,7 +60,7 @@ extern const struct INPUT_CAPTURE_INTERFACE FET_TEMP_TOP_RISING;
   @brief    This macro is used to read the Input Capture timer frequency (in Hz) for 
             SCCP1 instance.
 */
-#define SCCP1_CAPTURE_TIMER_FREQUENCY        90000000UL
+#define SCCP1_CAPTURE_TIMER_FREQUENCY        180000000UL
 
 /**
  * @ingroup  inputcapturedriver

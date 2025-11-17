@@ -181,10 +181,10 @@ inline static uint16_t ADC1_ConversionResultGet( enum ADC_CHANNEL channel )
 
     switch(channel)
     {
-        case VIN:
+        case VOUT:
                 result = ADCBUF0;
                 break;
-        case VOUT:
+        case VIN:
                 result = ADCBUF1;
                 break;
         default:
@@ -211,10 +211,10 @@ inline static bool ADC1_IsConversionComplete(enum ADC_CHANNEL channel)
 
     switch(channel)
     {
-        case VIN:
+        case VOUT:
                 status = ADSTATLbits.AN0RDY;
                 break;
-        case VOUT:
+        case VIN:
                 status = ADSTATLbits.AN1RDY;
                 break;
         default:
@@ -322,11 +322,11 @@ inline static void ADC1_IndividualChannelInterruptEnable(enum ADC_CHANNEL channe
 {
     switch(channel)
     {
-        case VIN:
+        case VOUT:
                 IEC5bits.ADCAN0IE = 1;
                 ADIELbits.IE0 = 1;
                 break;
-        case VOUT:
+        case VIN:
                 IEC5bits.ADCAN1IE = 1;
                 ADIELbits.IE1 = 1;
                 break;
@@ -345,11 +345,11 @@ inline static void ADC1_IndividualChannelInterruptDisable(enum ADC_CHANNEL chann
 {
     switch(channel)
     {
-        case VIN:
+        case VOUT:
                 IEC5bits.ADCAN0IE = 0;
                 ADIELbits.IE0 = 0;
                 break;
-        case VOUT:
+        case VIN:
                 IEC5bits.ADCAN1IE = 0;
                 ADIELbits.IE1 = 0;
                 break;
@@ -368,10 +368,10 @@ inline static void ADC1_IndividualChannelInterruptFlagClear(enum ADC_CHANNEL cha
 {
     switch(channel)
     {
-        case VIN:
+        case VOUT:
                 IFS5bits.ADCAN0IF = 0;
                 break;
-        case VOUT:
+        case VIN:
                 IFS5bits.ADCAN1IF = 0;
                 break;
         default:
@@ -390,10 +390,10 @@ inline static void ADC1_IndividualChannelInterruptPrioritySet(enum ADC_CHANNEL c
 {
 	switch(channel)
 	{
-		case VIN:
+		case VOUT:
 				IPC22bits.ADCAN0IP = priorityValue;
 				break;
-		case VOUT:
+		case VIN:
 				IPC23bits.ADCAN1IP = priorityValue;
 				break;
 		default:

@@ -60,7 +60,7 @@ extern const struct INPUT_CAPTURE_INTERFACE FET_TEMP_BOT_RISING;
   @brief    This macro is used to read the Input Capture timer frequency (in Hz) for 
             SCCP3 instance.
 */
-#define SCCP3_CAPTURE_TIMER_FREQUENCY        90000000UL
+#define SCCP3_CAPTURE_TIMER_FREQUENCY        180000000UL
 
 /**
  * @ingroup  inputcapturedriver
@@ -149,15 +149,6 @@ void SCCP3_InputCapture_Start(void);
  */
 void SCCP3_InputCapture_Stop(void);
 
-
-/**
- * @ingroup  inputcapturedriver
- * @brief 	 This function is used to implement the tasks for polled implementations
- * @pre 	 \ref SCCP3_InputCapture_Initialize must be called
- * @param    none
- * @return   none  
- */
-void SCCP3_InputCapture_Tasks(void);
 
 /**
  * @ingroup   inputcapturedriver

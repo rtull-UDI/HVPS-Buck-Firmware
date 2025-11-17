@@ -45,6 +45,210 @@
 
 /**
  * @ingroup  pinsdriver
+ * @brief    Sets the RB10 GPIO Pin which has a custom name of TOP_FAULT to High
+ * @pre      The RB10 must be set as Output Pin             
+ * @param    none
+ * @return   none  
+ */
+#define TOP_FAULT_SetHigh()          (_LATB10 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RB10 GPIO Pin which has a custom name of TOP_FAULT to Low
+ * @pre      The RB10 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define TOP_FAULT_SetLow()           (_LATB10 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Toggles the RB10 GPIO Pin which has a custom name of TOP_FAULT
+ * @pre      The RB10 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define TOP_FAULT_Toggle()           (_LATB10 ^= 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Reads the value of the RB10 GPIO Pin which has a custom name of TOP_FAULT
+ * @param    none
+ * @return   none  
+ */
+#define TOP_FAULT_GetValue()         _RB10
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RB10 GPIO Pin which has a custom name of TOP_FAULT as Input
+ * @param    none
+ * @return   none  
+ */
+#define TOP_FAULT_SetDigitalInput()  (_TRISB10 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RB10 GPIO Pin which has a custom name of TOP_FAULT as Output
+ * @param    none
+ * @return   none  
+ */
+#define TOP_FAULT_SetDigitalOutput() (_TRISB10 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RB12 GPIO Pin which has a custom name of BOTTOM_OC to High
+ * @pre      The RB12 must be set as Output Pin             
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_OC_SetHigh()          (_LATB12 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RB12 GPIO Pin which has a custom name of BOTTOM_OC to Low
+ * @pre      The RB12 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_OC_SetLow()           (_LATB12 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Toggles the RB12 GPIO Pin which has a custom name of BOTTOM_OC
+ * @pre      The RB12 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_OC_Toggle()           (_LATB12 ^= 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Reads the value of the RB12 GPIO Pin which has a custom name of BOTTOM_OC
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_OC_GetValue()         _RB12
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RB12 GPIO Pin which has a custom name of BOTTOM_OC as Input
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_OC_SetDigitalInput()  (_TRISB12 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RB12 GPIO Pin which has a custom name of BOTTOM_OC as Output
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_OC_SetDigitalOutput() (_TRISB12 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RB13 GPIO Pin which has a custom name of BOTTOM_FAULT to High
+ * @pre      The RB13 must be set as Output Pin             
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_FAULT_SetHigh()          (_LATB13 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RB13 GPIO Pin which has a custom name of BOTTOM_FAULT to Low
+ * @pre      The RB13 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_FAULT_SetLow()           (_LATB13 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Toggles the RB13 GPIO Pin which has a custom name of BOTTOM_FAULT
+ * @pre      The RB13 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_FAULT_Toggle()           (_LATB13 ^= 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Reads the value of the RB13 GPIO Pin which has a custom name of BOTTOM_FAULT
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_FAULT_GetValue()         _RB13
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RB13 GPIO Pin which has a custom name of BOTTOM_FAULT as Input
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_FAULT_SetDigitalInput()  (_TRISB13 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RB13 GPIO Pin which has a custom name of BOTTOM_FAULT as Output
+ * @param    none
+ * @return   none  
+ */
+#define BOTTOM_FAULT_SetDigitalOutput() (_TRISB13 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RD0 GPIO Pin which has a custom name of TOP_OC to High
+ * @pre      The RD0 must be set as Output Pin             
+ * @param    none
+ * @return   none  
+ */
+#define TOP_OC_SetHigh()          (_LATD0 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Sets the RD0 GPIO Pin which has a custom name of TOP_OC to Low
+ * @pre      The RD0 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define TOP_OC_SetLow()           (_LATD0 = 0)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Toggles the RD0 GPIO Pin which has a custom name of TOP_OC
+ * @pre      The RD0 must be set as Output Pin
+ * @param    none
+ * @return   none  
+ */
+#define TOP_OC_Toggle()           (_LATD0 ^= 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Reads the value of the RD0 GPIO Pin which has a custom name of TOP_OC
+ * @param    none
+ * @return   none  
+ */
+#define TOP_OC_GetValue()         _RD0
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RD0 GPIO Pin which has a custom name of TOP_OC as Input
+ * @param    none
+ * @return   none  
+ */
+#define TOP_OC_SetDigitalInput()  (_TRISD0 = 1)
+
+/**
+ * @ingroup  pinsdriver
+ * @brief    Configures the RD0 GPIO Pin which has a custom name of TOP_OC as Output
+ * @param    none
+ * @return   none  
+ */
+#define TOP_OC_SetDigitalOutput() (_TRISD0 = 0)
+
+/**
+ * @ingroup  pinsdriver
  * @brief    Sets the RD8 GPIO Pin which has a custom name of LD2 to High
  * @pre      The RD8 must be set as Output Pin             
  * @param    none

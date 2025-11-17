@@ -14,7 +14,9 @@ build/default/production/main.o: main.c \
  mcc_generated_files/input_capture/input_capture_interface.h \
  mcc_generated_files/input_capture/sccp1.h \
  mcc_generated_files/input_capture/input_capture_interface.h \
- mcc_generated_files/input_capture/sccp2.h VCOMP.h npnz16b.h
+ mcc_generated_files/input_capture/sccp2.h \
+ mcc_generated_files/input_capture/sccp3.h \
+ mcc_generated_files/input_capture/sccp4.h VCOMP.h npnz16b.h
 
 mcc_generated_files/system/system.h:
 
@@ -53,6 +55,10 @@ mcc_generated_files/input_capture/sccp1.h:
 mcc_generated_files/input_capture/input_capture_interface.h:
 
 mcc_generated_files/input_capture/sccp2.h:
+
+mcc_generated_files/input_capture/sccp3.h:
+
+mcc_generated_files/input_capture/sccp4.h:
 
 VCOMP.h:
 

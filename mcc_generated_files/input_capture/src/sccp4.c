@@ -53,7 +53,7 @@ const struct INPUT_CAPTURE_INTERFACE FET_TEMP_BOT_FALLING = {
     .Start               = &SCCP4_InputCapture_Start,
     .Stop                = &SCCP4_InputCapture_Stop,
     .InputCapture_CallbackRegister = &SCCP4_InputCapture_CallbackRegister,
-    .Tasks               = &SCCP4_InputCapture_Tasks,
+    .Tasks               = NULL,
     .DataRead            = &SCCP4_InputCapture_DataRead,
     .HasBufferOverflowed = &SCCP4_InputCapture_HasBufferOverflowed,
     .IsBufferEmpty       = &SCCP4_InputCapture_IsBufferEmpty,
@@ -64,8 +64,8 @@ const struct INPUT_CAPTURE_INTERFACE FET_TEMP_BOT_FALLING = {
 
 void SCCP4_InputCapture_Initialize(void)
 {
-    // MOD None; CCSEL enabled; TMR32 16 Bit; TMRPS 1:1; CLKSEL FOSC/2; TMRSYNC disabled; CCPSLP disabled; CCPSIDL disabled; CCPON disabled; 
-    CCP4CON1L = 0x10; //The module is disabled, till other settings are configured.
+    // MOD Every falling edge; CCSEL enabled; TMR32 16 Bit; TMRPS 1:1; CLKSEL FOSC; TMRSYNC disabled; CCPSLP disabled; CCPSIDL disabled; CCPON disabled; 
+    CCP4CON1L = 0x212; //The module is disabled, till other settings are configured.
     //SYNC None; ALTSYNC disabled; ONESHOT disabled; TRIGEN disabled; IOPS Each Time Base Period Match; RTRGEN disabled; OPSRC Timer Interrupt Event; 
     CCP4CON1H = 0x0;
     //ASDG 0x0; SSDG disabled; ASDGM disabled; PWMRSEN disabled; 
@@ -95,6 +95,9 @@ void SCCP4_InputCapture_Initialize(void)
     
     SCCP4_InputCapture_CallbackRegister(&SCCP4_InputCapture_Callback);
 
+    IFS2bits.CCP4IF = 0;
+    // Enabling SCCP4 interrupt
+    IEC2bits.CCP4IE = 1;
 
     CCP4CON1Lbits.CCPON = 1; //Enable Module
 
@@ -104,6 +107,8 @@ void SCCP4_InputCapture_Deinitialize(void)
 {
     CCP4CON1Lbits.CCPON = 0;
     
+    IFS2bits.CCP4IF = 0;
+    IEC2bits.CCP4IE = 0;
     
     CCP4CON1L = 0x0;
     CCP4CON1H = 0x0;
@@ -123,6 +128,9 @@ void SCCP4_InputCapture_Deinitialize(void)
 
 void SCCP4_InputCapture_Start(void)
 {
+    IFS2bits.CCP4IF = 0;
+    // Enable SCCP4 interrupt
+    IEC2bits.CCP4IE = 1;
     
     CCP4CON1Lbits.CCPON = 1;
 }
@@ -131,6 +139,9 @@ void SCCP4_InputCapture_Stop(void)
 {
     CCP4CON1Lbits.CCPON = 0;
     
+    IFS2bits.CCP4IF = 0;
+    // Disable SCCP4 interrupt
+    IEC2bits.CCP4IE = 0;
 }
 
 void SCCP4_InputCapture_CallbackRegister(void (*handler)(void))
@@ -146,16 +157,13 @@ void __attribute__ ((weak)) SCCP4_InputCapture_Callback (void)
 
 } 
 
-void SCCP4_InputCapture_Tasks(void)
+void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCP4Interrupt (void)
 {
-    if(IFS2bits.CCP4IF == 1)
+    if(NULL != SCCP4_InputCaptureHandler)
     {
-        if(NULL != SCCP4_InputCaptureHandler)
-        {
-            (*SCCP4_InputCaptureHandler)();
-        }
-        IFS2bits.CCP4IF = 0;
-    }
+        (*SCCP4_InputCaptureHandler)();
+    } 
+    IFS2bits.CCP4IF = 0;
 }
 
 uint32_t SCCP4_InputCapture_DataRead(void)

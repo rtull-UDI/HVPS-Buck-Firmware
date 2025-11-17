@@ -53,7 +53,7 @@ const struct INPUT_CAPTURE_INTERFACE FET_TEMP_BOT_RISING = {
     .Start               = &SCCP3_InputCapture_Start,
     .Stop                = &SCCP3_InputCapture_Stop,
     .InputCapture_CallbackRegister = &SCCP3_InputCapture_CallbackRegister,
-    .Tasks               = &SCCP3_InputCapture_Tasks,
+    .Tasks               = NULL,
     .DataRead            = &SCCP3_InputCapture_DataRead,
     .HasBufferOverflowed = &SCCP3_InputCapture_HasBufferOverflowed,
     .IsBufferEmpty       = &SCCP3_InputCapture_IsBufferEmpty,
@@ -64,8 +64,8 @@ const struct INPUT_CAPTURE_INTERFACE FET_TEMP_BOT_RISING = {
 
 void SCCP3_InputCapture_Initialize(void)
 {
-    // MOD None; CCSEL enabled; TMR32 16 Bit; TMRPS 1:1; CLKSEL FOSC/2; TMRSYNC disabled; CCPSLP disabled; CCPSIDL disabled; CCPON disabled; 
-    CCP3CON1L = 0x10; //The module is disabled, till other settings are configured.
+    // MOD Every rising edge; CCSEL enabled; TMR32 16 Bit; TMRPS 1:1; CLKSEL FOSC; TMRSYNC disabled; CCPSLP disabled; CCPSIDL disabled; CCPON disabled; 
+    CCP3CON1L = 0x211; //The module is disabled, till other settings are configured.
     //SYNC None; ALTSYNC disabled; ONESHOT disabled; TRIGEN disabled; IOPS Each Time Base Period Match; RTRGEN disabled; OPSRC Timer Interrupt Event; 
     CCP3CON1H = 0x0;
     //ASDG 0x0; SSDG disabled; ASDGM disabled; PWMRSEN disabled; 
@@ -95,6 +95,9 @@ void SCCP3_InputCapture_Initialize(void)
     
     SCCP3_InputCapture_CallbackRegister(&SCCP3_InputCapture_Callback);
 
+    IFS2bits.CCP3IF = 0;
+    // Enabling SCCP3 interrupt
+    IEC2bits.CCP3IE = 1;
 
     CCP3CON1Lbits.CCPON = 1; //Enable Module
 
@@ -104,6 +107,8 @@ void SCCP3_InputCapture_Deinitialize(void)
 {
     CCP3CON1Lbits.CCPON = 0;
     
+    IFS2bits.CCP3IF = 0;
+    IEC2bits.CCP3IE = 0;
     
     CCP3CON1L = 0x0;
     CCP3CON1H = 0x0;
@@ -123,6 +128,9 @@ void SCCP3_InputCapture_Deinitialize(void)
 
 void SCCP3_InputCapture_Start(void)
 {
+    IFS2bits.CCP3IF = 0;
+    // Enable SCCP3 interrupt
+    IEC2bits.CCP3IE = 1;
     
     CCP3CON1Lbits.CCPON = 1;
 }
@@ -131,6 +139,9 @@ void SCCP3_InputCapture_Stop(void)
 {
     CCP3CON1Lbits.CCPON = 0;
     
+    IFS2bits.CCP3IF = 0;
+    // Disable SCCP3 interrupt
+    IEC2bits.CCP3IE = 0;
 }
 
 void SCCP3_InputCapture_CallbackRegister(void (*handler)(void))
@@ -146,16 +157,13 @@ void __attribute__ ((weak)) SCCP3_InputCapture_Callback (void)
 
 } 
 
-void SCCP3_InputCapture_Tasks(void)
+void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCP3Interrupt (void)
 {
-    if(IFS2bits.CCP3IF == 1)
+    if(NULL != SCCP3_InputCaptureHandler)
     {
-        if(NULL != SCCP3_InputCaptureHandler)
-        {
-            (*SCCP3_InputCaptureHandler)();
-        }
-        IFS2bits.CCP3IF = 0;
-    }
+        (*SCCP3_InputCaptureHandler)();
+    } 
+    IFS2bits.CCP3IF = 0;
 }
 
 uint32_t SCCP3_InputCapture_DataRead(void)

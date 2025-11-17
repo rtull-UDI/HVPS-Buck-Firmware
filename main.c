@@ -125,7 +125,7 @@ static volatile uint16_t ss_step_tmr_ticks = 0; // soft-start step timer
 // Duty typical: ~3% @ 25°C to ~82% @ 150°C. OT fault drives TEMP = HIGH.  (TI)
 #define TEMP_PWM_PRINT_MS   1000U  // UART print period
 #define TEMP_IIR_ALPHA_NUM  1U    // IIR alpha = 1/8 (light smoothing)
-#define TEMP_IIR_ALPHA_DEN  8U
+#define TEMP_IIR_ALPHA_DEN  1U
 
 typedef struct {
     // Raw timestamps captured by ISRs (no math in ISR)

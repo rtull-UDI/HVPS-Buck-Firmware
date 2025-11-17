@@ -64,8 +64,8 @@ const struct INPUT_CAPTURE_INTERFACE FET_TEMP_TOP_FALLING = {
 
 void SCCP2_InputCapture_Initialize(void)
 {
-    // MOD Every falling edge; CCSEL enabled; TMR32 32 Bit; TMRPS 1:1; CLKSEL FOSC/2; TMRSYNC disabled; CCPSLP disabled; CCPSIDL disabled; CCPON disabled; 
-    CCP2CON1L = 0x32; //The module is disabled, till other settings are configured.
+    // MOD Every falling edge; CCSEL enabled; TMR32 16 Bit; TMRPS 1:1; CLKSEL FOSC; TMRSYNC disabled; CCPSLP disabled; CCPSIDL disabled; CCPON disabled; 
+    CCP2CON1L = 0x212; //The module is disabled, till other settings are configured.
     //SYNC None; ALTSYNC disabled; ONESHOT disabled; TRIGEN disabled; IOPS Each Time Base Period Match; RTRGEN disabled; OPSRC Timer Interrupt Event; 
     CCP2CON1H = 0x0;
     //ASDG 0x0; SSDG disabled; ASDGM disabled; PWMRSEN disabled; 

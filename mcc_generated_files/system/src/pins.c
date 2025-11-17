@@ -70,9 +70,9 @@ void PINS_Initialize(void)
     CNPUC = 0x0000;
     CNPUD = 0x0000;
     CNPDA = 0x0000;
-    CNPDB = 0xC000;
+    CNPDB = 0xF400;
     CNPDC = 0x0000;
-    CNPDD = 0x0000;
+    CNPDD = 0x0001;
 
 
     /****************************************************************************

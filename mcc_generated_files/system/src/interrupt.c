@@ -43,17 +43,25 @@
 
 void INTERRUPT_Initialize(void)
 {
-    // ADCAN1: ADC AN1 Convert Done
-    // Priority: 1
-    IPC23bits.ADCAN1IP = 1;
-    
     // ADC: ADC Global Interrupt
     // Priority: 7
     IPC22bits.ADCIP = 7;
     
+    // ADCAN0: ADC AN0 Convert Done
+    // Priority: 1
+    IPC22bits.ADCAN0IP = 1;
+    
     // DMT: Dead Man Timer
     // Priority: 1
     IPC11bits.DMTIP = 1;
+    
+    // CCP4: CCP4 Capture/Compare Event
+    // Priority: 1
+    IPC10bits.CCP4IP = 1;
+    
+    // CCP3: CCP3 Capture/Compare Event
+    // Priority: 1
+    IPC8bits.CCP3IP = 1;
     
     // CCP2: CCP2 Capture/Compare Event
     // Priority: 1
@@ -72,9 +80,11 @@ void INTERRUPT_Initialize(void)
 void INTERRUPT_Deinitialize(void)
 {
     //POR default value of priority
-    IPC23bits.ADCAN1IP = 4;
     IPC22bits.ADCIP = 4;
+    IPC22bits.ADCAN0IP = 4;
     IPC11bits.DMTIP = 4;
+    IPC10bits.CCP4IP = 4;
+    IPC8bits.CCP3IP = 4;
     IPC5bits.CCP2IP = 4;
     IPC1bits.CCP1IP = 4;
     IPC0bits.T1IP = 4;

@@ -126,8 +126,8 @@ void ADC1_Initialize (void)
     ADMOD0H = 0x0;
     // SIGN16 disabled; SIGN17 disabled; SIGN18 disabled; SIGN19 disabled; SIGN20 disabled; 
     ADMOD1L = 0x0;
-    // IE0 disabled; IE1 enabled; IE2 disabled; IE3 disabled; IE4 disabled; IE5 disabled; IE6 disabled; IE7 disabled; IE8 disabled; IE9 disabled; IE10 disabled; IE11 disabled; IE12 disabled; IE13 disabled; IE14 disabled; IE15 disabled; 
-    ADIEL = 0x2;
+    // IE0 enabled; IE1 disabled; IE2 disabled; IE3 disabled; IE4 disabled; IE5 disabled; IE6 disabled; IE7 disabled; IE8 disabled; IE9 disabled; IE10 disabled; IE11 disabled; IE12 disabled; IE13 disabled; IE14 disabled; IE15 disabled; 
+    ADIEL = 0x1;
     // IE16 disabled; IE17 disabled; IE18 disabled; IE19 disabled; IE20 disabled; 
     ADIEH = 0x0;
     // 
@@ -256,9 +256,9 @@ void ADC1_Initialize (void)
     // Enabling ADC1 interrupt.
     IEC5bits.ADCIE = 1;
     // Clearing VOUT interrupt flag.
-    IFS5bits.ADCAN1IF = 0;
+    IFS5bits.ADCAN0IF = 0;
     // Enabling VOUT interrupt.
-    IEC5bits.ADCAN1IE = 1;
+    IEC5bits.ADCAN0IE = 1;
 
     // Setting WARMTIME bit
     ADCON5Hbits.WARMTIME = 0xF;
@@ -267,8 +267,8 @@ void ADC1_Initialize (void)
     // Enabling Power for the Shared Core
     ADC1_SharedCorePowerEnable();
 
-    //TRGSRC0 Main PWM1 Trigger2; TRGSRC1 Main PWM1 Trigger1; 
-    ADTRIG0L = 0x405;
+    //TRGSRC0 Main PWM1 Trigger1; TRGSRC1 Main PWM1 Trigger2; 
+    ADTRIG0L = 0x504;
     //TRGSRC2 None; TRGSRC3 None; 
     ADTRIG0H = 0x0;
     //TRGSRC4 None; TRGSRC5 None; 
@@ -296,9 +296,9 @@ void ADC1_Deinitialize (void)
     uint16_t dummy; //buffers has to be read before clearing interrupt flags
     ADCON1Lbits.ADON = 0;
     
-    dummy = ADCBUF1;
-    IFS5bits.ADCAN1IF = 0;
-    IEC5bits.ADCAN1IE = 0;
+    dummy = ADCBUF0;
+    IFS5bits.ADCAN0IF = 0;
+    IEC5bits.ADCAN0IE = 0;
     
     IFS5bits.ADCIF = 0;
     IEC5bits.ADCIE = 0;
@@ -477,10 +477,10 @@ void ADC1_PWMTriggerSourceSet(enum ADC_CHANNEL channel, enum ADC_PWM_INSTANCE pw
     adcTriggerValue= ADC1_TriggerSourceValueGet(pwmInstance, triggerNumber);
     switch(channel)
     {
-        case VIN:
+        case VOUT:
                 ADTRIG0Lbits.TRGSRC0 = adcTriggerValue;
                 break;
-        case VOUT:
+        case VIN:
                 ADTRIG0Lbits.TRGSRC1 = adcTriggerValue;
                 break;
         default:
@@ -516,7 +516,7 @@ void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _ADCInterrupt ( void )
         adcVal = ADCBUF0;
         if(NULL != ADC1_ChannelHandler)
         {
-            (*ADC1_ChannelHandler)(VIN, adcVal);
+            (*ADC1_ChannelHandler)(VOUT, adcVal);
         }
         IFS5bits.ADCAN0IF = 0;
     }
@@ -526,7 +526,7 @@ void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _ADCInterrupt ( void )
         adcVal = ADCBUF1;
         if(NULL != ADC1_ChannelHandler)
         {
-            (*ADC1_ChannelHandler)(VOUT, adcVal);
+            (*ADC1_ChannelHandler)(VIN, adcVal);
         }
         IFS5bits.ADCAN1IF = 0;
     }
@@ -566,24 +566,9 @@ void __attribute__ ((weak)) ADC1_ChannelCallback (enum ADC_CHANNEL channel, uint
 
 void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _ADCAN0Interrupt ( void )
 {
-    uint16_t valVIN;
-    //Read the ADC value from the ADCBUF
-    valVIN = ADCBUF0;
-
-    if(NULL != ADC1_ChannelHandler)
-    {
-        (*ADC1_ChannelHandler)(VIN, valVIN);
-    }
-
-    //clear the VIN interrupt flag
-    IFS5bits.ADCAN0IF = 0;
-}
-
-void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _ADCAN1Interrupt ( void )
-{
     uint16_t valVOUT;
     //Read the ADC value from the ADCBUF
-    valVOUT = ADCBUF1;
+    valVOUT = ADCBUF0;
 
     if(NULL != ADC1_ChannelHandler)
     {
@@ -591,6 +576,21 @@ void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _ADCAN1Interrupt ( voi
     }
 
     //clear the VOUT interrupt flag
+    IFS5bits.ADCAN0IF = 0;
+}
+
+void __attribute__ ( ( __interrupt__ , auto_psv, weak ) ) _ADCAN1Interrupt ( void )
+{
+    uint16_t valVIN;
+    //Read the ADC value from the ADCBUF
+    valVIN = ADCBUF1;
+
+    if(NULL != ADC1_ChannelHandler)
+    {
+        (*ADC1_ChannelHandler)(VIN, valVIN);
+    }
+
+    //clear the VIN interrupt flag
     IFS5bits.ADCAN1IF = 0;
 }
 
@@ -602,7 +602,7 @@ void __attribute__ ((weak)) ADC1_ChannelTasks (enum ADC_CHANNEL channel)
     
     switch(channel)
     {   
-        case VIN:
+        case VOUT:
             if((bool)ADSTATLbits.AN0RDY == 1)
             {
                 //Read the ADC value from the ADCBUF
@@ -614,7 +614,7 @@ void __attribute__ ((weak)) ADC1_ChannelTasks (enum ADC_CHANNEL channel)
                 }
             }
             break;
-        case VOUT:
+        case VIN:
             if((bool)ADSTATLbits.AN1RDY == 1)
             {
                 //Read the ADC value from the ADCBUF

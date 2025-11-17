@@ -54,8 +54,8 @@
 */
 enum ADC_CHANNEL
 {
-    VIN,    /**<Channel Name:AN0   Assigned to:Shared Channel*/
-    VOUT,    /**<Channel Name:AN1   Assigned to:Shared Channel*/
+    VOUT,    /**<Channel Name:AN0   Assigned to:Shared Channel*/
+    VIN,    /**<Channel Name:AN1   Assigned to:Shared Channel*/
     MAX_CHANNELS = 2,    /**< MAX_CHANNELS will be removed in future MCC releases. Use ADC_MAX_CHANNELS instead */
     ADC_MAX_CHANNELS = 2    /**< Maximum number of channels configured by user in MCC Melody User Interface */
 };
